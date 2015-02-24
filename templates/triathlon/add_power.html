@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+<link href="../../static/test.css" rel="stylesheet">
+
+
+<ul class="tabs">
+    <li>
+        <input type="radio" name="tabs" id="tab1" checked />
+        <label for="tab1">Description</label>
+        <div id="tab-content1" class="tab-content">
+          <p  class="tab">A variety of exercise devices produce file records with the .tcx extension.  These files contain data for a workout: time, heart rate, cadence, lap time, etc as well as GPS coordinates.  These files are unprotected: in-fact they need to be; multiple fitness monitoring platforms rely on users being able to upload their own files.  The formatting of these files follow <a href="http://www.w3.org/TR/xmlschema-1/" style="color: white" target="_blank">XML guidelines</a>, files are also human readable in a text editor, as an added bonus.  This combination of factors will allow scripting to automatically spoof results.  The first example is added functionality while the second is boarder line malicious.</p>
+
+          <p  class="tab">.tcx files have the following macro format:</p>
+<pre class="prettyprint linenums">
+
+&lt;Header&gt;
+&lt;DataPoints&gt;
+&lt;Footer&gt;
+</pre>
+
+<p  class="tab">The header and footer contain information such as the date, device used, file specifications, average values for parameters.  The information here is essentially housekeeping, fairly un-interesting and will be completely left alone.</p>
+    <p  class="tab">The individual data points contain the information that we wish to change.  An example data point:</p>
+<pre class="prettyprint lang-html linenums">
+&lt;Trackpoint>
+&lt;Time>2015-01-10T17:31:19.000Z&lt;/Time>
+&lt;DistanceMeters>723.1699829101562&lt;/DistanceMeters>
+&lt;HeartRateBpm>
+&lt;Value>101&lt;/Value>
+&lt;/HeartRateBpm>
+&lt;Cadence>88&lt;/Cadence>
+&lt;Extensions>
+&lt;TPX xmlns="http://www.garmin.com/xmlschemas/ActivityExtension/v2">
+&lt;Speed>7.103000164031982&lt;/Speed>
+&lt;/TPX>
+&lt;/Extensions>
+&lt;/Trackpoint>
+</pre>
+
+<p  class="tab">The watch pings every few seconds, and creates a block of data with the same format.  Distance is in meters and speed is m/s.  </p>
+<p  class="tab"><b>Add Power and remove GPX points:</b></p>
+<p  class="tab">The first exercise involves editing data generated on my bike trainer.  I would like to add power to my data so that it’s viewable on workout tracking sites.  Sometimes I forget to turn off GPS when I’m in my living room, the resulting map is meaningless, so I would like to remove all maps from resulting data. </p>
+
+
+<p  class="tab"><b>Power guesstimate: </b></p>
+<p  class="tab"><a href="https://kurtkinetic.com/technical-information/kinetic-power-tech/" style="color: white" target="_blank">Kurt Kinetic</a> has an estimated power to speed formula which will be used to calculate power with a given speed.  The resulting power figures are by no means correct <a href="http://blog.trainerroad.com/kurt-kinetic-power-curve-virtualpower/" style="color: white" target="_blank">(an investigation of potential errors)</a>, this is done mainly so I can track my progress.  Results will be consistent but not accurate; I'll be able to see if I'm actually getting faster this season.  This is simply generating a better metric than speed. </p>
+
+asdf
+asdf
+asdf
+asdf
+        </div>
+    </li>
+  
+    <li>
+        <input type="radio" name="tabs" id="tab2" />
+        <label for="tab2">Tools</label>
+        <div id="tab-content2" class="tab-content">
+          
+        
+        <p class="tab"><a href="http://codepen.io/wallaceerick/pen/ojtal"  style="color: white" target="_blank">Source for the Tabs!</a></p>
+        <p  class="tab">Flask Web Forms to go here</p>
+          
+
+          <p>"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla?</p>
+            <br><br><br><br><br><br>
+        </div>
+    </li>
+</ul>
+
+<br style="clear: both;" />
+
+<p class="link"><a href="http://codepen.io/wallaceerick/pen/ojtal" target="_blank">Source for the Tabs!</a></p>
+
+<br style="clear: both;" />
+{% endblock %}
+

@@ -1,0 +1,23 @@
+
+.indent {padding-left: 30px;}
+.tab {text-indent: 30px;}
+.embed_img{width: 100%;}
+
+
+#my_nav{
+  float: left;
+  position: relative;
+  left: 50%;}
+
+.nav_items{
+  display: block;
+  float: left;
+  position: relative;
+  right: 50%;
+text-shadow: -0px 0 black, 0 0px black, 1px 0 black, 0 0px black;
+}
+
+.trainer{margin-bottom:-225px;}
+
+.post-heading{text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;}
+

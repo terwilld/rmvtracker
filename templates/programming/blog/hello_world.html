@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+              
+                    <p class="tab">This is Part I of a series detailing the creation of this blog.  The general purpose of this blog is mainly educational: Learning by doing.  Arrival at (this) [pseudo] finished first post involved quite the inefficient, circuitous path; something akin to traveling 7 sides of an octagon rather than just one.</p>
+
+                    <p><b>Final Setup: </b></p>
+                    <p class="indent"><a href="https://www.digitalocean.com/" target="_blank" style="target-new: tab;">Digital Ocean</a> 1 core VPS (5$/Month!), loaded with:<br>Ubuntu 14.04 with Apache.<br><a href="http://flask.pocoo.org/" target="_blank" style="target-new: tab;">Flask</a>: a micro-framework for Python<br><a href="http://getbootstrap.com/2.3.2/" target="_blank" style="target-new: tab;">Twitter Bootstrap</a>.  Specifically, a free template from <a href="http://startbootstrap.com/" target="_blank" style="target-new: tab;">Start Bootstrap</a></p>
+
+                    <p><b>Tutorials followed: </b></p>
+                    
+                    <p class="indent"><a href="https://www.digitalocean.com/community/tutorials/how-to-point-to-digitalocean-nameservers-from-common-domain-registrars" target="_blank" style="target-new: tab;">Point my Domain registrat to Digital Ocean name servers</a><br><a href="https://www.digitalocean.com/community/tutorials/how-to-install-linux-apache-mysql-php-lamp-stack-on-ubuntu" target="_blank" style="target-new: tab;">Set up the VPS and install LAMP</a><br><a href="https://www.digitalocean.com/community/tutorials/how-to-deploy-a-flask-application-on-an-ubuntu-vps" target="_blank" style="target-new: tab;">Delpoy Flask on the server</a><br><a href="http://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-i-hello-world" target="_blank" style="target-new: tab;">Miguel Grinberg's mega tutorial for creation of the intial functionality</a></p>
+
+                    <p class="tab">Once humming, I displayed the banal phrase "Hello World!".  Stupid, but cool, now I can change one idiotic comment to another, for the whole world to see!
+                    </p>
+                    <p class="tab">Before settling on a Twitter Bootstrap theme, I decided to show myself just how terrible a designer I am.  The first attempt at HTML/CSS proved to be a time consuming disaster of comedic proportions.  I built a landing page, nav-bar and post template using various bits of code found around the internet.  While the parts looked decent in isolation, they did not work together; it was an eye wrenching abomination.  The result was significantly less than the sum of the parts.</p>
+
+                    <p class="tab"><b>Landing Page</b> (<a href="http://davidterwilliger.com/first_landing"  target="_blank" style="target-new: tab;">Result</a>) (<a href="http://codepen.io/anon/pen/ogLPqX"  target="_blank" style="target-new: tab;">HTML/CSS</a>)</p>
+                    <p class="tab">Exalted by my new found ability to spew verbal diarrhea on the internet, I set out to make a beautiful landing page.  I found a nifty bit of HTML on Code Pen and decided to copy and change it to make a pretty page.  I had trouble getting JS to work within flask, so I stuck to versions with only HTML and CSS.  <a href="http://jsfiddle.net/" target="_blank" style="target-new: tab;">JS fiddle</a> is a nifty tool to blow up code and see which parts drive which actions.  The icons were copied from the internet and the background was edited in photoshop to match the background of the tiles.  A very mindless application, images were hosted on dropbox, which is cool.</p>
+
+                    <p class="tab"><b>Nav-bar</b> (<a href="http://davidterwilliger.com/first_base"  target="_blank" style="target-new: tab;">Result</a>) (<a href="http://codepen.io/anon/pen/zxBmOY"  target="_blank" style="target-new: tab;">HTML/CSS</a>)</p>
+                    <p class="tab">I actually like how this came out, I added a few classes to center items correctly, adjusted boarders and removed a few unused classes.  Basically, it looked decent beacuse I had significantly less of a hand in its design.</p>
+                    <p class="tab">First attempt using flask to introduce templating and inheritance:  A complete diaster.  I almost submitted myself to <a href="http://www.reddit.com/r/CrappyDesign#page=1"  target="_blank" style="target-new: tab;">/r/CrappyDesign</a>, so at least others would get a chuckle.  </p>
+                    <p class="tab">Time for a complete overhaul: Twitter Bootstrap</p>
+
+                    <p class="tab">I settled on a theme and started ripping things apart.  After downloading the source and testing a few locally, I settled on this "Clean blog".  It was super easy to drop the files through Filezilla.  The only changes I made so far: Addition of a class to allow indenting for first line of paragraphs, I'm also forcing links to open in a new tab.  All images are hosted on my public dropbox account. They take a split second to load, but its not a big deal.  This format may need to be changed in the low probability that I ever generate traffic.  Server side permissions also had to be changed once the FTP client was used.  Filezilla gave transfered files ownership to user ftp.  This needs tweaking</p>
+
+                    <p class="tab">Interestingly, I often spell "hello world" as "hellow world".  This was a source of minor aggravation and amusement.</p>
+
+
+{% endblock %}
+
+
