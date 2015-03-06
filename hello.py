@@ -2,7 +2,7 @@ import os
 from flask import Flask, render_template, request, url_for
 
 #need forms likbrary
-
+#
 
 
 
@@ -12,7 +12,7 @@ app = Flask(__name__)
 def base():
     return render_template('base.html')
 #	return render_template('hello.html')
-
+#
 
 @app.route("/home")
 @app.route("/index")
@@ -131,9 +131,14 @@ def training_log():
         title='Triathlon',
         date='Thoughts of a middle of the pack age grouper')
 
+@app.route("/triathlon/bike_fit")
+def bike_fit():
+    return render_template('triathlon/bike_fit.html',
+        background_img='https://s3-us-west-2.amazonaws.com/david-website/Triathlon/bike_fit/output.jpg',
+        title='Bike Fit',
+        date='An attempt to fit myself to new bike')
 
-
-        ##  Cooking
+        ##  Cooking  s
         ##
         ##
 @app.route("/cooking")
