@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block content %}
+
+                    <p class="tab">I originally built this site on a Digital Ocean server, but have since decided to move it to Heroku.  I've kept the DO server running and will use it to keep this Heroku app up.  Heroku's free version (1 'dynamo') often idles, which means the first request requires an additional amount of time to "spin up".  Once idling, the first request often takes ~10 seconds.</p>
+                    
+                    <p class="tab">Here, I prevent this idling by using a cronjob on my Digital Ocean server (Ubuntu 14.04) to systematically ping my Heroku app every 30 minutes.  There are web-tools to do this, though I'd rather do myself.</p>
+
+
+                    <hr>
+                    <p class="tab">First, write the script that will ping the heroku server:</p>
+
+<pre class="prettyprint linenums">
+sudo nano my_script</pre>
+
+                    <p class="tab">Add this: (there must be an empty line at the bottom).  The website can be either the address of the Heroku app, or a different domain which points to it.</p>                    
+
+<pre class="prettyprint linenums">
+#!/bin/bash
+curl www.my_website.com
+</pre>
+                    
+                    <p class="tab">Make the file executable:</p>             
+
+<pre class="prettyprint linenums">
+chmod +x my_script
+</pre>
+
+                    <p class="tab">The cronjob file is accessed by:</p>                    
+
+<pre class="prettyprint linenums">
+sudo crontab -e
+</pre>
+                    <p class="tab">Append the task to be executed:</p>                    
+
+
+
+<pre class="prettyprint linenums">
+01,31 * * * * sudo /home/david/./my_script.sh
+</pre>
+
+
+                    <p class="tab">This cron translates as: On the first and 31s minute of every hour of every month, run the script "my_script.sh" which is at location /home/david/ (with sudo).<a href="https://help.ubuntu.com/community/CronHowto" target="_blank" style="target-new: tab;">This </a> describes hot to customize the cron jobs.</p>
+
+
+<p class="tab">Next, verify that the script is actually exicuting.  Wait a few hours, then look at the Ubuntu sys logs (/var/log/syslog).  The log file shows my script getting run when it should.</p>
+
+
+                    <img class="embed_img" src="https://s3-us-west-2.amazonaws.com/david-website/Programming/crontab/linux+sys+is+running+the+cron.png"/></a>
+
+<p class="tab">Lastly, verify that the heroku app is recieving these pings.  You could just go to the app, and if there is no pause, assume that its working, or actually use the heroku logs to check.  The second is more rigorous.  Within terminal, login to heroku and view logs.  <a href="https://help.ubuntu.com/community/CronHowto" target="_blank" style="target-new: tab;">Their tutorial.</a></p>
+
+                    <img class="embed_img" src="https://s3-us-west-2.amazonaws.com/david-website/Programming/crontab/Screenshot+from+2015-03-10+17%3A16%3A03.png"/></a>
+
+<p class="tab">Awesome!</p>
+{% endblock %}
