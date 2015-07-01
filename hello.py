@@ -23,7 +23,7 @@ def base():
     return render_template('base.html')
 #	return render_template('hello.html')
 #
-
+#
 @app.route("/home")
 @app.route("/index")
 @app.route("/")
@@ -106,6 +106,20 @@ def nav_test():
 @app.route("/programming/blog/nav_test_2")
 def nav_test_2():
         return render_template('/programming/blog/nav_test_2.html')
+
+
+
+        #Triathlon scraping article part I
+@app.route("/programming/triathlon_scraping_part_I")
+def triathlon_scraping_part_I():
+    return render_template('/programming/triathlon_scraping.html',
+        background_img='https://s3-us-west-2.amazonaws.com/david-website/Programming/triathlon_scraping_part_I/hackers-3.jpg',
+        title='Triathlon Result Web-scraping in Python',
+        date='June 24, 2015')
+
+
+
+
 
             ##  Programming/projects
             ##
