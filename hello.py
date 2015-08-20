@@ -30,6 +30,7 @@ def base():
 def home():
 #	return "hello all"
 	return render_template('index.html')
+    
 
 @app.route("/nav")
 def nav():
@@ -52,6 +53,44 @@ def programming():
         background_img='https://s3-us-west-2.amazonaws.com/david-website/Programming/tron-tron_00297189.jpg',
         title='Programming Interests',
         date='A place of tinkering')
+
+
+
+            ## Programming/ocw
+            ##
+@app.route("/programming/ocw")
+def ocw():
+        return render_template('programming/ocw/ocw.html',
+        background_img='https://s3-us-west-2.amazonaws.com/david-website/Programming/ocw/maxresdefault.jpg',
+        title='Open Courseware tribulations',
+        date='A loose collection of programming exercises')
+
+
+            ## CS 106a
+            ##
+@app.route("/programming/ocw/600")
+def intro600():
+        return render_template('programming/ocw/600/600.html',
+        background_img='https://s3-us-west-2.amazonaws.com/david-website/Programming/ocw/600/course_600.jpg',
+        title='6.00',
+        date='Introduction to Computer Science and Programming')
+
+                ##Classes
+@app.route("/programming/ocw/600/class_1")
+def intro600_class_1():
+        return render_template('programming/ocw/600/classes/class_1.html',
+        background_img='https://s3-us-west-2.amazonaws.com/david-website/Programming/ocw/600/course_600.jpg',
+        title='Introduction to 6.00',
+        date=' ')
+@app.route("/programming/ocw/600/class_2")
+def intro600_class_2():
+        return render_template('programming/ocw/600/classes/class_2.html',
+        background_img='https://s3-us-west-2.amazonaws.com/david-website/Programming/ocw/600/course_600.jpg',
+        title='Core Elements of a Program',
+        date=' ')
+
+
+
 
             ##  Programming/blog
             ##
