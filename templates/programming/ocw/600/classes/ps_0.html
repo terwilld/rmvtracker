@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+<h2>Problem Set 0</h2>
+
+<p class="tab">Very straight forward excercise: Get IDLE running and write a very simple program.  This is slightly more complicated for me because I'm trying to do most of this on <a href="http://www.ubuntu.com/download/desktop" target="_blank" style="target-new: tab;">Ubuntu 14.04</a> rather than Windows or Mac as is more typical. The minor complication is getting IDLE to work on the desktop as it does for Windows/Mac.  From what little I understand, people using any Linux distribution typically opt for more thorough text editors rather than the default.  Python scripts are typically executed through the command line, rather than (the more introduction friendly) running through IDLE.  Getting IDLE to actually open was a pain and required a quick stackover flow visit <a href="http://askubuntu.com/questions/78541/how-do-i-set-idle-as-the-default-editor-for-python-scripts" target="_blank" style="target-new: tab;">here</a> and <a href="http://askubuntu.com/questions/254213/why-cant-i-easily-open-py-files-with-idle-using-right-click" target="_blank" style="target-new: tab;">here</a>.</p>
+
+<p class="tab">The trivial code solution once setup:</p>
+
+
+<pre class="prettyprint lang-python">
+print 'Enter your date of birth:'
+date_of_birth = raw_input('**')
+print 'Enter your last name: '
+last_name = raw_input('**')
+print last_name,date_of_birth
+</pre>
+
+
+
+
+{% endblock %}

@@ -82,6 +82,23 @@ def intro600_class_1():
         background_img='https://s3-us-west-2.amazonaws.com/david-website/Programming/ocw/600/course_600.jpg',
         title='Introduction to 6.00',
         date=' ')
+
+@app.route("/programming/ocw/600/ps_0")
+def intro600_ps_0():
+        return render_template('programming/ocw/600/classes/ps_0.html',
+        background_img='https://s3-us-west-2.amazonaws.com/david-website/Programming/ocw/600/course_600.jpg',
+        title='Problem Set 0',
+        date=' ')
+
+@app.route("/programming/ocw/600/ps_1")
+def intro600_ps_1():
+        return render_template('programming/ocw/600/classes/ps_1.html',
+        background_img='https://s3-us-west-2.amazonaws.com/david-website/Programming/ocw/600/course_600.jpg',
+        title='Problem Set 1',
+        date=' ')
+
+
+
 @app.route("/programming/ocw/600/class_2")
 def intro600_class_2():
         return render_template('programming/ocw/600/classes/class_2.html',
@@ -89,6 +106,26 @@ def intro600_class_2():
         title='Core Elements of a Program',
         date=' ')
 
+@app.route("/programming/ocw/600/class_3")
+def intro600_class_3():
+        return render_template('programming/ocw/600/classes/class_3.html',
+        background_img='https://s3-us-west-2.amazonaws.com/david-website/Programming/ocw/600/course_600.jpg',
+        title='Problem Solving',
+        date=' ')
+
+@app.route("/programming/ocw/600/class_4")
+def intro600_class_4():
+        return render_template('programming/ocw/600/classes/class_4.html',
+        background_img='https://s3-us-west-2.amazonaws.com/david-website/Programming/ocw/600/course_600.jpg',
+        title='Machine Interpretation of a Program',
+        date=' ')
+
+@app.route("/programming/ocw/600/class_5")
+def intro600_class_5():
+        return render_template('programming/ocw/600/classes/class_5.html',
+        background_img='https://s3-us-west-2.amazonaws.com/david-website/Programming/ocw/600/course_600.jpg',
+        title='Objects in Python',
+        date=' ')
 
 
 
@@ -241,7 +278,20 @@ def misc():
         date='Random stuff that simply doesn\'t belong anywhere else')
 
 
-        ##  Contact and formcreation
+
+        ##  Wintercroft
+        ##
+@app.route("/misc/papercraft_tutorial")
+def papercraft_tutorial():
+    return render_template('misc/papercraft_tutorial.html',
+        background_img='https://s3-us-west-2.amazonaws.com/david-website/Misc/Papercraft/charizard_papercraft__brawl_version_by_princessstacie-d4nl76u.jpg',
+        title='Papercraft Tutorial: Wintercroft Bison',
+        date='November 14 2015')
+
+
+
+
+        ##  Contact and form creation
         ##
 
 @app.route('/contact', methods=['GET', 'POST'])

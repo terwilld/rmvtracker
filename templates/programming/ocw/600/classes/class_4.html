@@ -1,0 +1,193 @@
+{% extends "base.html" %}
+{% block content %}
+
+<p class="tab">Left last class with discussion of bisection search to solve a square root.  Something was wrong in the algorithm.</p>
+
+
+
+<pre class="prettyprint lang-python">
+###Find the square root using bisection
+x = 0.5
+epsilon = 0.01
+low = 0.0
+high = x
+ans = (high + low)/2.0
+while abs(ans**2 - x) >= epsilon and ans <= x:
+    print 'ans =', ans, 'low =', low, 'high =', high
+    if ans**2 < x:
+        low = ans
+    else:
+        high = ans
+    ans = (high + low)/2.0
+    
+print ans, 'is close to square root of', x
+</pre>
+
+<p class="tab">Output: (print statements after every iteration of the loop)</p>
+
+<pre class="prettyprint lang-python">
+ans = 0.25 low = 0.0 high = 0.5
+ans = 0.375 low = 0.25 high = 0.5
+ans = 0.4375 low = 0.375 high = 0.5
+ans = 0.46875 low = 0.4375 high = 0.5
+ans = 0.484375 low = 0.46875 high = 0.5
+ans = 0.4921875 low = 0.484375 high = 0.5
+ans = 0.49609375 low = 0.4921875 high = 0.5
+ans = 0.498046875 low = 0.49609375 high = 0.5
+ans = 0.4990234375 low = 0.498046875 high = 0.5
+ans = 0.49951171875 low = 0.4990234375 high = 0.5
+ans = 0.499755859375 low = 0.49951171875 high = 0.5
+ans = 0.499877929688 low = 0.499755859375 high = 0.5
+ans = 0.499938964844 low = 0.499877929688 high = 0.5
+ans = 0.499969482422 low = 0.499938964844 high = 0.5
+ans = 0.499984741211 low = 0.499969482422 high = 0.5
+ans = 0.499992370605 low = 0.499984741211 high = 0.5
+ans = 0.499996185303 low = 0.499992370605 high = 0.5
+ans = 0.499998092651 low = 0.499996185303 high = 0.5
+ans = 0.499999046326 low = 0.499998092651 high = 0.5
+ans = 0.499999523163 low = 0.499999046326 high = 0.5
+</pre>
+
+
+<p class="tab">This method quickly converges and finds a point where ans, low and high are all 0.5.  It becomes stuck in an infinite loop.  This method assumes that the answer is betwween the number itself and 0; this assumption does not hold for values between 0 and 1.  This fixed is by changing high to max(x,1.0) rather than just x.  So for all values below 1; the algorithm starts searching for all values between 0 and 1.  Quick aside; it looks like there is still a flaw, since the 2nd part of the conditional causes the while loop to terminate upon the 2nd test of the loop.  I think the program is fixed by eliminating the latter part of the while conditional test.</p>
+
+<p class="tab">This (intentional) bug lends itself to a quick debugging tutorial:</p>
+
+<ul>
+  <li>Systematically use print statements to check and see what's going on</li>  
+  <li>Re-assess assumptions [often assumptions are un-knowingly made]</li>
+  <li>Ensure the search space contains the answer! (not always obvious)</li>
+  <li>Check how the program behaves for odd inputs (<a href="https://twitter.com/sempf/status/514473420277694465?lang=en" target="_blank" style="target-new: tab;"><u>Obligatory</u></a>)</li>
+</ul>  
+
+<p class="tab">So now we have a pretty decent bit of code for finding square roots.  Is it useful? Sure, buts its not great:</p>
+
+<ul>
+  <li>Each time we want to change input, program needs editing</li>  
+  <li>No way to embed: commands must be re-typed each time</li>  
+  <li>This yeilds un-necessary amounts of code</li>  
+  <li>More code is harder to de-bug</li>  
+  <li>Functionality is the measuring stick, not lines of code!</li>  
+  <li>Many of these problems are solved with functions!</li>  
+</ul>  
+
+
+<h3>Functions!</h3>
+
+<p class="tab"><b>Decomposition:</b></p>
+<ul>
+  <li>Creates structure =></li>  
+  <li>Breaks programs into modules =></li>  
+  <li>Modules are self contained re-usable blocks</li>  
+</ul>  
+
+<p class="tab"><b>Abstraction:</b></p>
+<ul>
+  <li>Supresses detail: Black box</li>  
+  <li>Don't know about or care about inner-workings</li>  
+  <li>Ignorance is bliss</li>  
+  <li>Only need to know how to use</li>  
+</ul>  
+
+
+<p class="tab">We have somewhat seen this before.  The '+' command (plus).  We don't really care HOW '+' works, simply that it does.  We only need to know how to use it.  Functions allow us to extend the language by adding our own primatives!</p>
+
+
+
+<pre class="prettyprint lang-python">
+def withinEpsilon(x, y, epsilon):
+    """x,y,epsilon ints or floats.  epsilon > 0.0
+       returns True if x is within epsilon of y"""
+    return abs(x - y) <= epsilon
+
+print withinEpsilon(2,3,1)
+val = withinEpsilon(2,3,0.5)
+print val
+</pre>
+
+
+<p class="tab">Return is a special command for functions which allow us to get a value out. Triple quotes (""") are the specifications, which will pop up everything a user uses the function.  The function is used by invoking it:  x = withinEpsilon.  This tests if two values are a certain distance apart and returns the boolean.  Correct use of functions require understanding both the input and output.</p>
+
+<pre class="prettyprint lang-python">
+def f(x):
+   x = x + 1
+   print 'x =', x
+   return x
+
+x = 3
+z = f(x)
+print 'z =', z
+print 'x =', x
+</pre>
+
+output:
+
+<pre class="prettyprint lang-python">
+x = 4
+z = 4
+x = 3
+</pre>
+
+<p class="tab">Stupid function, increments x by one and returns it.  This is done to show scope.  Scope defines a mapping of names to objects.  The two x's are different!  Next the idea of nested scopes.  assert Flase: causes program to stop in its tracks so debugging.  The stack viewer allows us to see which scopes exist.  Move assert from f1() to g() to see that a new scope exists [debug stack viewer].  Slightly less stupid example:  </p>
+
+<pre class="prettyprint lang-python">
+def f1(x):
+   def g():
+       x = 'abc'
+   x = x + 1
+   print 'x =', x
+   g()
+   assert False
+   return x
+
+x = 3
+z = f1(x)
+
+</pre>
+
+
+<p class="tab">A brief walkthrough of the scopes:  The top level scope is Main, this scope contains the variable x (bound to 3) the function f1.  The scope of f1 contains x=4, and the function g.  The scope of g contains the variable x = 'abc'.  Each of these different x's is considered unique [Be careful!].  Additionally, once the scope has run to completion (ie the function ends) the scope disappears; and all variables / calcuations are terminated.  This method follows LIFO (Last In First Out).</p>
+
+
+
+<h2>Swtich gears:  Strings!</h2>
+<ul>
+  <li>First non-scaler type</li>
+  <li>The type can be decomposed into smaller sub-sets</li>
+  <li>For loops can walk through elements of a string</li>
+</ul>  
+
+<pre class="prettyprint lang-python">
+sumDigits = 0
+for c in str(1952):
+    sumDigits += int(c)
+print sumDigits
+</pre>
+
+<p class="tab">Output:</p>
+
+<pre class="prettyprint lang-python">
+17
+</pre>
+
+<p class="tab">Can also take subsets: </p>
+
+<pre class="prettyprint lang-python">
+s='abc'
+print s[0]
+print s[0:2]
+x=s.find('b')
+print x
+</pre>
+
+<p class="tab">Output:</p>
+
+<pre class="prettyprint lang-python">
+a
+ab
+1
+</pre>
+
+<p class="tab">The first finds a specific element, the 2nd finds a slice [sub-set] of the string. Or find: gets the index of an object within the string.  Tuples are also nice.</p>
+
+{% endblock %}

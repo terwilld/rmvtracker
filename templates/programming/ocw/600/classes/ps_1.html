@@ -1,0 +1,196 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+<h2>Problem Set 1</h2>
+
+<p class="tab">The three problems revolve around calculating creditcard debt using iterative techniques to repeat a process (monthly calculations) over the course of a year.</p>
+
+
+
+<p class="tab"><b>Solution 1:</b></p>
+
+
+<pre class="prettyprint lang-python">
+
+current_balance = float(raw_input('Enter the outstanding balance on your credit card: '))
+annual_interest_rate = float(raw_input('Enter the annual credit card interest rate as a decimal: '))
+min_payment_rate = float(raw_input('Enter the minimum monthly payment rate as a decimal: '))
+monthly_interest_rate=annual_interest_rate/12.0
+
+#print current_balance,annual_interest_rate,min_payment_rate,monthly_interest_rate
+
+total_payment=0
+
+for month in range(1,13):
+    print 'Month: ' + str(month)
+
+    #calculate the size of the minimum payment
+    minimum_monthly_payment = current_balance*min_payment_rate
+
+    #round min payment
+    minimum_monthly_payment=minimum_monthly_payment*100
+    minimum_monthly_payment=round(minimum_monthly_payment)
+    minimum_monthly_payment=minimum_monthly_payment/100.0
+
+    #add this payment to history of all payments
+    total_payment=total_payment+minimum_monthly_payment
+    
+    #calculate how much interest was due
+    interest_paid =current_balance*monthly_interest_rate
+
+    #round interest paid
+    interest_paid=interest_paid*100
+    interest_paid=round(interest_paid)
+    interest_paid=interest_paid/100.0
+
+
+    #calculate how much of the payment is left for principle
+    principal_paid = minimum_monthly_payment - interest_paid
+
+    #need not round any more since they should be correct no non-whole penny amounts remain
+
+    #adjust current balance
+    current_balance=current_balance-principal_paid
+
+
+
+    print 'Minimum monthly payment: $',minimum_monthly_payment
+    print 'Principle paid: $',principal_paid
+    print 'Remaining balance: $',current_balance
+
+
+    #important stuff;  rounding after every step!not at the end
+    #how to round
+    # should be a function
+
+print 'RESULT'
+print 'Total amount paid: $',total_payment
+print 'Remaining balance: $',current_balance
+
+</pre>
+
+
+
+
+<p class="tab">Pretty straight forward.  At the end of each month, the minimum % is paid, the monthly interest is applied and a remaining balance is calculated.  This is repeated 12 times during the course of the year. I was unable to get the round function (native to python) to work properly, I was afraid that the function was rounding to the number of digits in the number rather than number of digits after the decimal.  So I multiplied by 100 rounded to int then divided by 100.  The only real caveat I can imagine is where the rounding should occur.  Do banks keep track of many digits and round, or is rounding done at the end of every step.  Cumulative erros on the order of fractions of a cent would not be a big deal, unless the timeframe is very long.</p>
+
+
+<p class="tab"><b>Solution 2:</b></p>
+
+
+<pre class="prettyprint lang-python">
+initial_balance = float(raw_input('Enter the outstanding balance on your credit card: '))
+annual_interest_rate = float(raw_input('Enter the annual credit card interest rate as a decimal: '))
+
+#starting variables
+monthly_interest_rate = annual_interest_rate / 12.0
+current_balance = initial_balance
+current_payment = 10.0
+
+
+while current_balance > 0:
+    #initialize variables at the start of every testing of a payment
+    months_used = 0
+    current_balance = initial_balance
+    
+    for month in range(1,13):
+        current_balance=current_balance*(1+monthly_interest_rate)-current_payment
+        if current_balance < 0:
+            print 'Monthly payment to pay off debt in 1 year: ' + str(int(current_payment))
+            print 'Number of Months needed: '+str(month)
+            #round current balance
+            current_balance = current_balance*100
+            current_balance=round(current_balance)
+            current_balance=current_balance/100.0
+            print 'Balance: ' + str(current_balance)
+            break
+    current_payment+=10
+
+#Unsure if rounding should be done internally or not
+</pre>
+
+
+<p class="tab">A more interesting version: Determine the minimum monthly payment required to pay off the debt by the end of the year.  This is a brute force approach, starting with $10 payments, running the simulation: if the balance is <$0: the answer has been found.  Otherwise, add $10 to the payments and re-test.  Brute force, so fairly inefficient; accuracy is traded for speed.</p>
+
+
+
+
+<p class="tab"><b>Solution 3:</b></p>
+
+<pre class="prettyprint lang-python">
+initial_balance = float(raw_input('Enter the outstanding balance on your credit card: '))
+annual_interest_rate = float(raw_input('Enter the annual credit card interest rate as a decimal: '))
+
+#starting variables
+monthly_interest_rate = annual_interest_rate / 12.0
+current_balance = initial_balance
+current_payment = 10.0
+
+
+payment_lower_bound = initial_balance/12.0
+payment_upper_bound =(initial_balance*(1+(monthly_interest_rate))**12.0)/12.0
+
+
+
+def my_round(x):
+    '''input a variable get rounded to two digits'''
+    x=x*100
+    x=round(x)
+    x=x/100.0
+    return x
+
+def simulate_payments(current_balance,current_payment,monthly_interest_rate):
+    '''incomes a current balance, current payment and monthly interest rate
+    out comes the remaining balance after this simulation'''
+    for month in range(1,13):
+        current_balance=my_round(current_balance*(1+monthly_interest_rate)-current_payment)
+    return current_balance
+
+
+payment_lower_bound=my_round(payment_lower_bound)
+payment_upper_bound=my_round(payment_upper_bound)
+
+#print payment_lower_bound,'lower bound',payment_upper_bound,'upper bound'
+#print simulate_payments(initial_balance,payment_lower_bound,monthly_interest_rate)
+#print simulate_payments(initial_balance,payment_upper_bound,monthly_interest_rate)
+
+current_guess=my_round((payment_lower_bound+payment_upper_bound)/2.0)
+#print simulate_payments(initial_balance,current_guess,monthly_interest_rate)
+
+
+while payment_upper_bound-payment_lower_bound>0.04:
+    result_balance=simulate_payments(initial_balance,current_guess,monthly_interest_rate)
+    #print result_balance,'result balance'
+    #x=raw_input()
+    
+    if result_balance > 0:
+        payment_lower_bound = current_guess
+        current_guess=my_round((payment_lower_bound+payment_upper_bound)/2.0)
+    else:
+        payment_upper_bound = current_guess
+        current_guess=my_round((payment_lower_bound+payment_upper_bound)/2.0)
+        
+        
+        
+#print payment_lower_bound,'payment lower bound', payment_upper_bound,'payment upper bound'
+final_answer=0
+for x in range(int(100*payment_lower_bound),int(100*payment_upper_bound+2)):
+    result = simulate_payments(initial_balance,x/100.0,monthly_interest_rate)
+    #print result
+    if result < 0:
+        #print 'here is my answer',x/100.0
+        final_answer=x/100.0
+        break
+print 'Monthly payment to pay off debt in 1 year:',final_answer
+print 'Number of months needed: 12'    
+print 'Balance:',result
+</pre>
+
+<p class="tab">My code seems to get the the test cases correct but I'm worried about two things.  The instructions hinted it would be best to simply edit the code from question two, I re-wrote it.  I made functions one for simulation and one for the rounding.  Not really sure if this would be ok.  Lastly I'm slightly worried about what happens when my algorithm converges on the correct answer.  Since there is quite a bit of rounding, I'm worried about being off by a cent or two.  To remedy this I stopped the loop slightly early; and check all answer once I'm within 5 cents.  Adding 5 rounds of computation doesn't really matter, and the bisection is working.  Likely a better answer exists with significantly less code, perhaps a re-write aiming for less lines in the future.</p>
+
+
+
+
+
+{% endblock %}
