@@ -24,12 +24,26 @@ def base():
 #	return render_template('hello.html')
 #
 #
+
+
+@app.route("/base_2")
 @app.route("/home")
 @app.route("/index")
 @app.route("/")
-def home():
-#	return "hello all"
-	return render_template('index.html')
+def base_2():
+    return render_template('base_2.html')
+#   return render_template('hello.html')
+#
+#
+
+
+
+# @app.route("/home")
+# @app.route("/index")
+# @app.route("/")
+# def home():
+# #	return "hello all"
+# 	return render_template('index.html')
     
 
 @app.route("/nav")
