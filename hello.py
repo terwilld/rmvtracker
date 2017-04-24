@@ -36,6 +36,10 @@ def base_2():
 #
 #
 
+@app.route("/how_this_was_made")
+def how_this_was_made():
+    return render_template('how_this_was_made.html')
+
 
 
 # @app.route("/home")
