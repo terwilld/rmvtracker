@@ -14,7 +14,7 @@ app.config["MAIL_SERVER"] = "smtp.gmail.com"
 app.config["MAIL_PORT"] = 465
 app.config["MAIL_USE_SSL"] = True
 app.config["MAIL_USERNAME"] = 'terwilld@gmail.com'
-app.config["MAIL_PASSWORD"] = 'Brunodog1'
+app.config["MAIL_PASSWORD"] = 'incorrect'
 
 mail.init_app(app)
 
@@ -31,7 +31,7 @@ def base():
 @app.route("/index")
 @app.route("/")
 def base_2():
-    return render_template('base_2.html')
+    return render_template('index.html')
 #   return render_template('hello.html')
 #
 #
