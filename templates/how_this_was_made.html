@@ -1,13 +1,58 @@
 {% extends "base_2.html" %}
 {% block content %}
-                        <h1>Welcome to the Maafljha;ldkjqw;lkejssachusetts RMV Scraper</h1>
-                        
-                        <p>&emsp;This site iwelfiqjelksjs designed to make visits to the RMV easier, allowing you to view location based wait times for the last week and current wait times so far this week.</p>
+                        <h1>How this was clobbeled together</h1>
+                                  <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Navigate elsewhere</a>
+                        <p>&emsp;This site was primarily organized in two parts.  First, my <a href="www.davidterwilliger.com">personal site's</a> flask app was cloned, HTML and CSS was copied from this   <a href="https://startbootstrap.com/template-overviews/simple-sidebar/">twitter bootstrap theme</a>.  Heroku's addon PostgreSQL was added; a python script was written to scrape and store data, data can then be queried and graphed.</p>
 
-                        <p>&emsp;Please toggle the menu to the left and select your location of interest.  Graphs show both Registration and Licensing wait times for the current and past week.</p>
+     
+                        <p>&emsp;<b>Cloning previous site:</b></p>
+                        <p>&emsp;Make sure python is upto date, along with any libraries.  Same with <a href="https://devcenter.heroku.com/articles/heroku-cli">Heroku toolbelt</a>.  I'm fairly sure that my library management with virtual env is a little out of wack.  I believe, that when I originally setup the venv file for my personal site; I was accidently installing lots more packages on that python interpreter.  My python distro may need a complete wipe and re-set to get better organized.</p>
 
-                        <p>Make sure to keep all page content within the <code>#page-content-wrapper</code>.</p>
-                        <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle Menu</a>
+
+
+
+
+<pre class="prettyprint lang-css linenums">
+cd dekstop
+brew install heroku
+heroku login
+heroku git:clone -a myapp
+</pre>
+<p>&emsp;Rename the folder, cd inside and start venv.</p>
+
+
+<pre class="prettyprint lang-css linenums">
+cd my_project_folder
+source venv/bin/activate
+</pre>
+
+<p>&emsp;At this point, the cloned python code had many moldule dependancies, which are not necessarily downloaded.  Running the app instantly fails since these libaries are missing.  Modules are installed with pip until failures stop.</p>
+
+
+<pre class="prettyprint lang-css linenums">
+pip install requests
+pip install flask
+pip install flask-mail
+</pre>
+
+<p>&emsp;Once the debugger starts, navigate over to http://127.0.0.1:5000 to see the local version.  This exact copy is pushed to a new heroku:</p>
+
+
+<pre class="prettyprint lang-css linenums">
+heroku create my_application
+git init
+heroku apps:create example
+git add.
+git commit -m "pushing first time"
+git push 'enter the heroku git address here' master
+</pre>
+
+<p>&emsp;I have two applications on heroku, so the destiantion application within heroku needs to be specified.</p>
+
+
+
+
+
 
 {% endblock %}
 
