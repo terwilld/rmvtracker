@@ -2,7 +2,7 @@
 {% block content %}
                         <h1>How this was clobbeled together</h1>
                                   <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Navigate elsewhere</a>
-                        <p>&emsp;This site was primarily organized in two parts.  First, my <a href="www.davidterwilliger.com">personal site's</a> flask app was cloned, HTML and CSS was copied from this   <a href="https://startbootstrap.com/template-overviews/simple-sidebar/">twitter bootstrap theme</a>.  Heroku's addon PostgreSQL was added; a python script was written to scrape and store data, data can then be queried and graphed.</p>
+                        <p>&emsp;This site was primarily organized in two parts.  First, my <a href="https://www.davidterwilliger.com">personal site's</a> flask app was cloned, HTML and CSS was copied from this   <a href="https://startbootstrap.com/template-overviews/simple-sidebar/">twitter bootstrap theme</a>.  Heroku's addon PostgreSQL was added; a python script was written to scrape and store data, data can then be queried and graphed.</p>
 
      
                         <p>&emsp;<b>Cloning previous site:</b></p>
@@ -47,8 +47,13 @@ git commit -m "pushing first time"
 git push 'enter the heroku git address here' master
 </pre>
 
-<p>&emsp;I have two applications on heroku, so the destiantion application within heroku needs to be specified.</p>
+<p>&emsp;I have two applications on heroku, so the destiantion application within heroku needs to be specified.  Push to github also.</p>
 
+<pre class="prettyprint lang-css linenums">
+git remote add origin remote repository URL
+git remote -v
+git push -u origin master
+</pre>
 
 
 
