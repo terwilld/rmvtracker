@@ -5,7 +5,7 @@
                         <p>&emsp;This site was primarily organized in two parts.  First, my <a href="https://www.davidterwilliger.com">personal site's</a> flask app was cloned, HTML and CSS was copied from this   <a href="https://startbootstrap.com/template-overviews/simple-sidebar/">twitter bootstrap theme</a>.  Heroku's addon PostgreSQL was added; a python script was written to scrape and store data, data can then be queried and graphed.</p>
 
      
-                        <p>&emsp;<b>Cloning previous site:</b></p>
+                        <h2>&emsp;<b>Cloning previous site:</b></h2>
                         <p>&emsp;Make sure python is upto date, along with any libraries.  Same with <a href="https://devcenter.heroku.com/articles/heroku-cli">Heroku toolbelt</a>.  I'm fairly sure that my library management with virtual env is a little out of wack.  I believe, that when I originally setup the venv file for my personal site; I was accidently installing lots more packages on that python interpreter.  My python distro may need a complete wipe and re-set to get better organized.</p>
 
 
@@ -57,7 +57,64 @@ git push -u origin master
 
 
 
-test twokkk
+
+<h2>&emsp;<b>Adding new HTML and CSS theme:</b></h2>
+
+<p>&emsp;Next, HTML and CSS was downloaded from <a href="https://startbootstrap.com/template-overviews/simple-sidebar/">twitter bootstrap theme</a>.  This theme will be the base, and all extra text will be contained within the genera content area.  The theme's html, renamed base_2.html is placed in flask's template folder, its associated CSS files are placed in the static folder.  CSS files are linked to the base_2.html by adding the following few lines in the header of the HTML file:</p>
+
+
+<pre class="prettyprint lang-css linenums">
+&lt;link href="../../../static/simple-sidebar.css" rel="stylesheet"&gt;
+</pre>
+
+<p>&emsp;This template uses the same JS (boostrap.min) I had already been using, so no additional JS needed to be added.  Base_2.html then has block and end block content added so that flask builds on it.  </p>
+
+
+<pre class="prettyprint lang-css linenums">
+{% raw %}{% block content %}
+{% endblock %}{% endraw %} 
+</pre>
+
+<p>&emsp;Future HTML to extend this base have one line added to the top:</p>
+
+<pre class="prettyprint lang-css linenums">
+{% raw %}{% extends "base_2.html" %}{% endraw %} 
+</pre>
+
+<p>&emsp;The HTML for the selections within the side bar were changed and added to.  HTML under the toggle button is also changed. Two non template pages are made, the landing page (index.html was changed)and this page by simply making an html file of the format:</p>
+
+<pre class="prettyprint lang-css linenums">
+{% raw %}{% extends "base_2.html" %}{% endraw %}
+{% raw %}{% block content %}{% endraw %}
+//Insert all html for the content of the page
+{% raw %}{% endblock %}{% endraw %}
+</pre>
+
+<p>&emsp;Routes within the hello.py file had to be changed to link to new pages:</p>
+
+<pre class="prettyprint lang-css linenums">
+{% raw %}@app.route("/base_2")
+@app.route("/home")
+@app.route("/index")
+@app.route("/")
+def base_2():
+    return render_template('index.html')
+#   return render_template('hello.html')
+#
+#
+
+@app.route("/how_this_was_made")
+def how_this_was_made():
+    return render_template('how_this_was_made.html'){% endraw %}
+</pre>
+
+
+
+
+
+<p>&emsp;So far, I've made a base template, and two pages, the landing page and this page.  Each page extends the base template so all pages have the same togglebar / links.  Next I deleted all my extra leftover code from my pervious website to start cleaning up.</p>
+
+
 
 {% endblock %}
 
