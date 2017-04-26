@@ -1,4 +1,5 @@
 import os
+import sys
 from flask import Flask, render_template, request, url_for, flash
 from forms import ContactForm
 from flask.ext.mail import Message, Mail
@@ -18,8 +19,17 @@ app.config["MAIL_PASSWORD"] = 'incorrect'
 
 mail.init_app(app)
 
+
+
+print "print test 1"
+sys.stdout.flush()
+
+
+
+
 @app.route("/base")
 def base():
+
     return render_template('base.html')
 #	return render_template('hello.html')
 #
@@ -38,6 +48,8 @@ def base_2():
 
 @app.route("/how_this_was_made")
 def how_this_was_made():
+    print "print test 2"
+    sys.stdout.flush()
     return render_template('how_this_was_made.html')
 
 
