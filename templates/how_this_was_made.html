@@ -115,6 +115,35 @@ def how_this_was_made():
 <p>&emsp;So far, I've made a base template, and two pages, the landing page and this page.  Each page extends the base template so all pages have the same togglebar / links.  Next I deleted all my extra leftover code from my previous website to clean up.</p>
 
 
+<h2>&emsp;<b>Installing PostgreSQL locally:</b></h2>
+
+<p>&emsp;Next, I install PostgreSQL on my machine.  I start by loading data into a local data base before putting it on the cloud.  Homebrew, PostgrSQL and the python package Psycopg2 are installed.  Psycopg2 installed within the venv python interpreter. <a href="https://www.codementor.io/devops/tutorial/getting-started-postgresql-server-mac-osx">This</a> was a very helpful tutorial.</p>
+
+
+
+<pre class="prettyprint lang-css linenums">
+ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+brew update  #Just to make sure
+brew install postgres
+</pre>
+
+<p>&emsp;Also, configure postgreSQL to start on boot.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 {% endblock %}
 
