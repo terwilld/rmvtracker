@@ -127,7 +127,32 @@ brew update  #Just to make sure
 brew install postgres
 </pre>
 
-<p>&emsp;Also, configure postgreSQL to start on boot.</p>
+<p>&emsp;Also, configure postgreSQL to start on boot.  Create database: from within postgreSQL:</p>
+
+
+<pre class="prettyprint lang-css linenums">
+psql
+create database rmv_scraping;
+</pre>
+
+
+<p>&emsp;Make a small script to test things are setup:</p>
+
+<pre class="prettyprint lang-css linenums">
+#!/usr/bin/python2.4
+# Small script to show PostgreSQL and Pyscopg together
+import psycopg2
+try:
+    conn = psycopg2.connect("dbname='rmv_scraping' user='patrick' host='localhost' password=sadf")
+    print '123'
+except:
+    print "I am unable to connect to the database"
+</pre>
+
+
+
+
+
 
 
 
