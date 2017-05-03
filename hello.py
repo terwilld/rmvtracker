@@ -55,14 +55,15 @@ def how_this_was_made():
     return render_template('how_this_was_made.html')
 
 
-DATABASE_URL='123'
 @app.route("/test")
 def test():
     print "print test 2"
     sys.stdout.flush()
     print DATABASE_URL
-    return DATABASE_URL
-
+    try:
+        return DATABASE_URL
+    else:
+        return 'shit'
 
 
 
@@ -358,6 +359,62 @@ def contact():
  
   elif request.method == 'GET':
     return render_template('contact.html', form=form, title='About / Email', date =' ', background_img='https://s3-us-west-2.amazonaws.com/david-website/Contact/contactus-background-right.jpg')
+
+
+
+
+
+
+
+
+# #heroku git:remote -a [app_name]
+# heroku apps:info
+
+
+
+# Add-on                                      Plan       Price  State  
+# 
+# heroku-postgresql (postgresql-clean-71179)  hobby-dev  free   created
+#   as DATABASE
+
+
+
+# I had a database from the web app so I needed to delete it
+
+# (venv) Davids-MacBook-Air:rmv-scraping davidterwilliger$ heroku addons:create heroku-postgresql:hobby-dev
+# Creating heroku-postgresql:hobby-dev on  rmv-scraping... free
+# Database has been created and is available
+#  ! This database is empty. If upgrading, you can transfer
+#  ! data from another database with pg:copy
+# Created postgresql-deep-37824 as DATABASE_URL
+# Use heroku addons:docs heroku-postgresql to view documentation
+# You have new mail in /var/mail/davidterwilliger
+# (venv) Davids-MacBook-Air:rmv-scraping davidterwilliger$ 
+
+
+
+# heroku addons:create heroku-postgresql:hobby-dev
+
+# https://devcenter.heroku.com/articles/heroku-postgresql
+
+# heroku config
+
+# heroku config -s | grep HEROKU_POSTGRESQL
+
+# https://devcenter.heroku.com/articles/heroku-postgresql#provisioning-the-add-on
+
+# DATABASE_URL
+
+
+
+
+
+
+
+
+
+
+
 
 
 
