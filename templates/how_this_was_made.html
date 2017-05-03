@@ -115,7 +115,7 @@ def how_this_was_made():
 <p>&emsp;So far, I've made a base template, and two pages, the landing page and this page.  Each page extends the base template so all pages have the same togglebar / links.  Next I deleted all my extra leftover code from my previous website to clean up.</p>
 
 
-<h2>&emsp;<b>Clean up local venv:</b></h2>
+<h2>&emsp;<b>Clean up local venv and make a .gitignore:</b></h2>
 
 <p>&emsp;Thanks to help from a redditor, my intial handling of venv we done very poorly.  Venv should be completely ignored when pushing and pulling.  This is likely the root of all my initial dependancy errors.  I'm currently in a situation where my requirements.txt file is correct, and the install of venv is very off.  Best practice is to re-create venv (delete and re-initialize) then re-build dependancies from requirements.txt.  So, I delete the venev folder, re-install a new venv and then use the correct requirements.txt to re-populate the modules:</p>
 
@@ -125,9 +125,21 @@ python -m virtualenv venv
 venv/bin/pip install -r requirements.txt
 </pre>
 
-<p>&emsp; Gitgore.</p>
+<p>&emsp; A .gitigore is added to hide any files which may in the future contain login credentials.  The venv folder ought to also be ignored, since there is no reason to keep track of it (the proper venv can be re-created from a requirements.txt as above).  Also complied python doesn't need to be pushed to git.  Cd over to the root level and:</p>
 
 
+
+<pre class="prettyprint lang-css linenums">
+touch .gitignore
+open .gitignore
+</pre>
+&emsp;Add following lines:
+<pre class="prettyprint lang-css linenums">
+venv/
+*.pyc
+*~
+.DS_Store
+</pre>
 
 
 
