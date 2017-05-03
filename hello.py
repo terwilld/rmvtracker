@@ -3,6 +3,7 @@ import sys
 from flask import Flask, render_template, request, url_for, flash
 from forms import ContactForm
 from flask.ext.mail import Message, Mail
+import psycopg2
 #need forms likbrary
 #
 mail = Mail()
@@ -51,6 +52,17 @@ def how_this_was_made():
     print "print test 2"
     sys.stdout.flush()
     return render_template('how_this_was_made.html')
+
+
+
+@app.route("/test")
+def test():
+    print "print test 2"
+    sys.stdout.flush()
+    return 'test'
+
+
+
 
 
 
