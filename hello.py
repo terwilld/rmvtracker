@@ -59,11 +59,11 @@ def how_this_was_made():
 def test():
     print "print test 2"
     sys.stdout.flush()
-    print DATABASE_URL
-    try:
-        return DATABASE_URL
-    else:
-        return 'shit'
+    #print DATABASE_URL
+    #try:
+    #    return DATABASE_URL
+    #else:
+    return 'shit'
 
 
 
