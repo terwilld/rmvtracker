@@ -55,13 +55,13 @@ def how_this_was_made():
     return render_template('how_this_was_made.html')
 
 
-
+DATABASE_URL='123'
 @app.route("/test")
 def test():
     print "print test 2"
     sys.stdout.flush()
     print DATABASE_URL
-    return 'test',
+    return DATABASE_URL
 
 
 
