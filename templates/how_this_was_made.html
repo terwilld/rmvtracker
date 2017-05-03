@@ -42,7 +42,7 @@ pip install flask-mail
 heroku create my_application
 git init
 heroku apps:create example
-git add.
+git add .
 git commit -m "pushing first time"
 git push 'enter the heroku git address here' master
 </pre>
@@ -151,9 +151,9 @@ git add .
 
 
 
-<h2>&emsp;<b>Installing PostgreSQL locally:</b></h2>
+<h2>&emsp;<b>Installing PostgreSQL locally, adding and graphing data:</b></h2>
 
-<p>&emsp;Next, I install PostgreSQL on my machine.  I start by loading data into a local data base before putting it on the cloud.  Homebrew, PostgrSQL and the python package Psycopg2 are installed.  Psycopg2 installed within the venv python interpreter. <a href="https://www.codementor.io/devops/tutorial/getting-started-postgresql-server-mac-osx">This</a> was a very helpful tutorial.</p>
+<p>&emsp;Next, I install PostgreSQL on my machine.  I start by loading data into a local database before putting it on the cloud.  Homebrew, PostgrSQL and the python package Psycopg2 are installed.  Psycopg2 installed within the venv python interpreter. <a href="https://www.codementor.io/devops/tutorial/getting-started-postgresql-server-mac-osx">This</a> was a very helpful tutorial.</p>
 
 
 
@@ -187,24 +187,31 @@ except:
 
 
 
+<p>&emsp;Now, its (finally) time to start playing with some data.  Quite a bit of debugging was done within the terminal ($ psql); once commands determined they would be added to python.  First, two tables were created (Current_Data and Current_Data_1).  Date + time formatting needs to be adjusted.  This first set of code is a proof of concept, very messy, simply trying to see if data moves correctly.</p>
 
 
 
+<p><a href="https://github.com/terwilld/rmvtracker/blob/master/postgresql_testing/create_table.py">Code here: Its a little too large to put in the page.</a></p>
+
+<p>&emsp;Two slightly different tables.  Date and time will be stored in the first or first two columns, then each column will contain the current wait time.  Each location has two data points (registration and licensing).  Once the table is created we can add some fake data from a list.  After running this script, used the terminal to navigate to psql and verify that data was recieved.</p>
 
 
+<p><a href="https://github.com/terwilld/rmvtracker/blob/master/postgresql_testing/add_test_data.py">Code here: Its a little too large to put in the page.</a></p>
 
 
+<p>&emsp;Next, pretty large step:  Combine the ability to inject data with previously created webscraping.  The script is run every 5 minutes with a cron job; webscraped data is then stored in the database!</p>
+
+<p><a href="https://github.com/terwilld/rmvtracker/blob/master/postgresql_testing/test_location.py">Code here: Its a little too large to put in the page.</a></p>
+
+<p>&emsp;After a weekday has passed, the data is retrieved and graphed:</p>
 
 
+<p><a href="https://github.com/terwilld/rmvtracker/blob/master/postgresql_testing/get_data_and_graph.py">Code here: Its a little too large to put in the page.</a></p>
 
 
+<p>&emsp;It isn't pretty, but its working.</p>
 
 
-
-
-
-
-
-
+<blockquote class="imgur-embed-pub" lang="en" data-id="a/ATXLD"><a href="//imgur.com/ATXLD"></a></blockquote><script async src="//s.imgur.com/min/embed.js" charset="utf-8"></script>
 {% endblock %}
 
