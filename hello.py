@@ -5,7 +5,8 @@ from forms import ContactForm
 from flask.ext.mail import Message, Mail
 import psycopg2
 #need forms likbrary
-#
+# pip install -r requirements.txt
+
 mail = Mail()
 
 app = Flask(__name__)
@@ -59,7 +60,8 @@ def how_this_was_made():
 def test():
     print "print test 2"
     sys.stdout.flush()
-    return 'test'
+    print DATABASE_URL
+    return 'test',
 
 
 

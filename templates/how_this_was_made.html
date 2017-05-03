@@ -210,8 +210,40 @@ except:
 
 
 <p>&emsp;It isn't pretty, but its working.</p>
-
+    
 
 <blockquote class="imgur-embed-pub" lang="en" data-id="a/ATXLD"><a href="//imgur.com/ATXLD"></a></blockquote><script async src="//s.imgur.com/min/embed.js" charset="utf-8"></script>
+
+
+
+
+<h2>&emsp;<b>Connecting to heroku psql Addon:</b></h2>
+
+
+<p>&emsp;So far, testing psql was done not on within the local python environment.  First thing is to install the needed modules within the venv python version.  The local version of python needs psycopg2 and pandas installed: requirements.txt is updated and the version is pushed just to test.</p>
+
+
+<pre class="prettyprint lang-css linenums">
+pip freeze > requirements.txt
+git add .
+git push "testing correct pip config"
+git push heroku master
+</pre>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 {% endblock %}
+
 
