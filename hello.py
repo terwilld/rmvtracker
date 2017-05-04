@@ -70,36 +70,36 @@ def test2():
   cur = conn.cursor()
   print '2352134'
 
-    cur.execute("CREATE TABLE Current_Data_1(Date_time VARCHAR(35),\
-        Attleboro_Licensing INT, Attleboro_Registration INT, \
-        Boston_Licensing INT, Boston_Registration INT, \
-        Braintree_Licensing INT, Braintree_Registration INT, \
-        Brockton_Licensing INT, Brockton_Registration INT, \
-        Chicopee_Licensing INT, Chicopee_Registration INT, \
-        Easthampton_Licensing INT, Easthampton_Registration INT, \
-        Fall_River_Licensing INT, Fall_River_Registration INT, \
-        Greenfield_Licensing INT, Greenfield_Registration INT, \
-        Haverhill_Licensing INT, Haverhill_Registration INT, \
-        Lawrence_Licensing INT, Lawrence_Registration INT, \
-        Leominster_Licensing INT, Leominster_Registration INT, \
-        Lowell_Licensing INT, Lowell_Registration INT, \
-        Marthas_Vineyard_Licensing INT, Marthas_Vineyard_Registration INT, \
-        Milford_Licensing INT, Milford_Registration INT, \
-        Nantucket_Licensing INT, Nantucket_Registration INT, \
-        Natick_Licensing INT, Natick_Registration INT, \
-        New_Bedford_Licensing INT, New_Bedford_Registration INT, \
-        North_Adams_Licensing INT, North_Adams_Registration INT, \
-        Pittsfield_Licensing INT, Pittsfield_Registration INT, \
-        Plymouth_Licensing INT, Plymouth_Registration INT, \
-        Revere_Licensing INT, Revere_Registration INT, \
-        Roslindale_Licensing INT, Roslindale_Registration INT, \
-        South_Yarmouth_Licensing INT, South_Yarmouth_Registration INT, \
-        Springfield_Licensing INT, Springfield_Registration INT, \
-        Taunton_Licensing INT, Taunton_Registration INT, \
-        Watertown_Licensing INT, Watertown_Registration INT, \
-        Wilmington_Licensing INT, Wilmington_Registration INT, \
-        Worcester_Licensing INT, Worcester_Registration INT)")
-    conn.commit()
+    # cur.execute("CREATE TABLE Current_Data_1(Date_time VARCHAR(35),\
+    #     Attleboro_Licensing INT, Attleboro_Registration INT, \
+    #     Boston_Licensing INT, Boston_Registration INT, \
+    #     Braintree_Licensing INT, Braintree_Registration INT, \
+    #     Brockton_Licensing INT, Brockton_Registration INT, \
+    #     Chicopee_Licensing INT, Chicopee_Registration INT, \
+    #     Easthampton_Licensing INT, Easthampton_Registration INT, \
+    #     Fall_River_Licensing INT, Fall_River_Registration INT, \
+    #     Greenfield_Licensing INT, Greenfield_Registration INT, \
+    #     Haverhill_Licensing INT, Haverhill_Registration INT, \
+    #     Lawrence_Licensing INT, Lawrence_Registration INT, \
+    #     Leominster_Licensing INT, Leominster_Registration INT, \
+    #     Lowell_Licensing INT, Lowell_Registration INT, \
+    #     Marthas_Vineyard_Licensing INT, Marthas_Vineyard_Registration INT, \
+    #     Milford_Licensing INT, Milford_Registration INT, \
+    #     Nantucket_Licensing INT, Nantucket_Registration INT, \
+    #     Natick_Licensing INT, Natick_Registration INT, \
+    #     New_Bedford_Licensing INT, New_Bedford_Registration INT, \
+    #     North_Adams_Licensing INT, North_Adams_Registration INT, \
+    #     Pittsfield_Licensing INT, Pittsfield_Registration INT, \
+    #     Plymouth_Licensing INT, Plymouth_Registration INT, \
+    #     Revere_Licensing INT, Revere_Registration INT, \
+    #     Roslindale_Licensing INT, Roslindale_Registration INT, \
+    #     South_Yarmouth_Licensing INT, South_Yarmouth_Registration INT, \
+    #     Springfield_Licensing INT, Springfield_Registration INT, \
+    #     Taunton_Licensing INT, Taunton_Registration INT, \
+    #     Watertown_Licensing INT, Watertown_Registration INT, \
+    #     Wilmington_Licensing INT, Wilmington_Registration INT, \
+    #     Worcester_Licensing INT, Worcester_Registration INT)")
+    # conn.commit()
 
 
 
@@ -114,6 +114,4 @@ def test2():
 
 
 if __name__ == "__main__":
-    print '123'
-
     app.run(debug=True)
