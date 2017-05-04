@@ -4,6 +4,7 @@ from flask import Flask, render_template, request, url_for, flash
 from forms import ContactForm
 from flask.ext.mail import Message, Mail
 import psycopg2
+import urlparse
 
 
 
@@ -44,7 +45,25 @@ def test():
     sys.stdout.flush()
     return 'shit'
 
+@app.route("/test2")
+def test2():
+  urlparse.uses_netloc.append("postgres")
+  #parse the 'DATABASE_URL' variable into url
+  url = urlparse.urlparse(os.environ["DATABASE_URL"])
 
+  conn = psycopg2.connect(
+     database=url.path[1:],
+     user=url.username,
+     password=url.password,
+     host=url.hostname,
+     port=url.port
+  )
+  #cur is the cursor which is used to execute all PSQL queries
+  cur = conn.cursor()
+  if conn != None:
+    output = "Connected to database successfully!\n"
+    conn.close()
+  return "Hello World"+output
 
 
 
