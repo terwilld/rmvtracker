@@ -71,7 +71,14 @@ def test2():
         cur = conn.cursor()
         print '2352134'
         #cur.execute("CREATE TABLE customers (id SERIAL PRIMARY KEY, name VARCHAR age INTEGER);")
-        cur.execute("CREATE TABLE Current_Data(Date_time VARCHAR(35)")
+        try:
+
+            #cur.execute("CREATE TABLE Current_Data(Date_time VARCHAR(35)")
+            cur.execute("CREATE TABLE test_fetch (val int4)")
+        except:
+
+            return 'failed'
+
         print 'made table'
         conn.commit()
         print 'commited'
