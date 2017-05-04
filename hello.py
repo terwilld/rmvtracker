@@ -69,7 +69,10 @@ def test2():
     print 'test 1234'
     cur = conn.cursor()
     print '2352134'
-
+    cur.execute("CREATE TABLE Current_Data_1(Date_time VARCHAR(35)")
+    print 'made table'
+    conn.commit()
+    print 'commited'
 
     # cur.execute("CREATE TABLE Current_Data_1(Date_time VARCHAR(35),\
     #     Attleboro_Licensing INT, Attleboro_Registration INT, \
