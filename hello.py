@@ -52,23 +52,24 @@ def test():
 #http://neillobo.azurewebsites.net/setting-up-postgres-on-heroku/
 @app.route("/test2")
 def test2():
-  urlparse.uses_netloc.append("postgres")
+    urlparse.uses_netloc.append("postgres")
   #parse the 'DATABASE_URL' variable into url
 
-  url = urlparse.urlparse(os.environ["DATABASE_URL"])
+    url = urlparse.urlparse(os.environ["DATABASE_URL"])
 
 
-  conn = psycopg2.connect(
+    conn = psycopg2.connect(
      database=url.path[1:],
      user=url.username,
      password=url.password,
      host=url.hostname,
      port=url.port
-  )
+    )
   #cur is the cursor which is used to execute all PSQL queries
-  print 'test 1234'
-  cur = conn.cursor()
-  print '2352134'
+    print 'test 1234'
+    cur = conn.cursor()
+    print '2352134'
+
 
     # cur.execute("CREATE TABLE Current_Data_1(Date_time VARCHAR(35),\
     #     Attleboro_Licensing INT, Attleboro_Registration INT, \
@@ -104,10 +105,10 @@ def test2():
 
 
 
-  if conn != None:
-    output = "Connected to database successfully!\n"
-    conn.close()
-  return "Hello World"+output
+    if conn != None:
+        output = "Connected to database successfully!\n"
+        conn.close()
+    return "Hello World"+output
 
 
 #dbname = config.MYSQL_DATABASE
