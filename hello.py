@@ -70,7 +70,8 @@ def test2():
         print 'test 1234'
         cur = conn.cursor()
         print '2352134'
-        cur.execute("CREATE TABLE customers (id SERIAL PRIMARY KEY, name VARCHAR age INTEGER);")
+        #cur.execute("CREATE TABLE customers (id SERIAL PRIMARY KEY, name VARCHAR age INTEGER);")
+        cur.execute("CREATE TABLE Current_Data(Date_time VARCHAR(35)")
         print 'made table'
         conn.commit()
         print 'commited'
