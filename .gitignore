@@ -2,4 +2,5 @@ venv/
 *.pyc
 *~
 .DS_Store
+config.py
 postgresql_testing/Last login: Wed Apr 26 22:02:58 on ttys000
