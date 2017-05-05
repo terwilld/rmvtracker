@@ -94,7 +94,7 @@ def test2():
         try:
             print 'test 1230 inside try'
             #cur.execute("CREATE TABLE Current_Data(Date_time VARCHAR(35)")
-            cur.execute("CREATE TABLE test (id serial PRIMARY KEY, num integer, data varchar);")
+            cur.execute("CREATE TABLE test_1 (id serial PRIMARY KEY, num integer, data varchar);")
             print 'after make table'
             #cur.execute("CREATE TABLE customers (id SERIAL PRIMARY KEY, name VARCHAR age INTEGER);")
         except:
