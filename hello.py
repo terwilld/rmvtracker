@@ -65,11 +65,11 @@ def test2():
          port=url.port
         )
       #cur is the cursor which is used to execute all PSQL queries
-        print database
-        print userprint password
-        print host
-        print port
-        
+        #print database
+        #print userprint password
+        #print host
+        #print port
+
         print 'test 1234'
         cur = conn.cursor()
         print '2352134'
