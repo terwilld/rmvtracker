@@ -65,6 +65,11 @@ def test2():
          port=url.port
         )
       #cur is the cursor which is used to execute all PSQL queries
+        print database
+        print userprint password
+        print host
+        print port
+        
         print 'test 1234'
         cur = conn.cursor()
         print '2352134'
@@ -74,6 +79,7 @@ def test2():
             #cur.execute("CREATE TABLE Current_Data(Date_time VARCHAR(35)")
             cur.execute("CREATE TABLE customers (id SERIAL PRIMARY KEY, name VARCHAR age INTEGER);")
         except:
+
             return 'failed'
         print 'made table'
         conn.commit()
