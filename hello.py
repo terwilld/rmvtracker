@@ -49,6 +49,19 @@ def test():
 
 
 
+
+
+# # Open a cursor to perform database operations
+# >>> cur = conn.cursor()
+
+# # Execute a command: this creates a new table
+# >>> cur.execute("CREATE TABLE test (id serial PRIMARY KEY, num integer, data varchar);")
+
+
+
+
+
+
 #http://neillobo.azurewebsites.net/setting-up-postgres-on-heroku/
 @app.route("/test2")
 def test2():
@@ -56,7 +69,7 @@ def test2():
         urlparse.uses_netloc.append("postgres")
       #parse the 'DATABASE_URL' variable into url
         url = urlparse.urlparse(os.environ["DATABASE_URL"])
-
+        print 'got in'
         conn = psycopg2.connect(
          database=url.path[1:],
          user=url.username,
@@ -64,6 +77,7 @@ def test2():
          host=url.hostname,
          port=url.port
         )
+        print 'made connection'
       #cur is the cursor which is used to execute all PSQL queries
         print str(url.path[1:])+'database'
         print str(url.username)+'user'
@@ -73,7 +87,9 @@ def test2():
 
         print 'test 1234'
         cur = conn.cursor()
-        print '2352134'
+        print ' test 2352134'
+        cur.execute("CREATE TABLE test (id serial PRIMARY KEY, num integer, data varchar);")
+        print 'test 99999'
         #cur.execute("CREATE TABLE customers (id SERIAL PRIMARY KEY, name VARCHAR age INTEGER);")
         try:
 
