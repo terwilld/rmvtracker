@@ -81,10 +81,10 @@ def test2():
       #cur is the cursor which is used to execute all PSQL queries
         print type(url.path[1:])
         print 'database type : ', type(url.path[1:]), ' Database name: ', str(url.path[1:])
-        print 'user type : ',type(url.username),' User:  ',str(url.username)
-        print 'password type: ',type(url.password)' Password: ',str(url.password)
-        print 'host type : ',type (url.hostname),' Host: ',str(url.hostname)
-        print 'port type: ',type(url.port), ' Port: ',str(url.port)
+        print 'user type : ', type(url.username), ' User:  ', str(url.username)
+        print 'password type: ', type(url.password), ' Password: ', str(url.password)
+        print 'host type : ', type (url.hostname), ' Host: ', str(url.hostname)
+        print 'port type: ', type(url.port), ' Port: ', str(url.port)
 
         print 'test 1234'
         cur = conn.cursor()
