@@ -6,6 +6,17 @@ from flask.ext.mail import Message, Mail
 import psycopg2
 import urlparse
 
+try:
+    print 'trying to get config file'
+    from config import * 
+    print 'got config file'
+    print 'DB_name: ', DB_name 
+    print 'DB_User: ', DB_user
+    print 'DB_Password: ', DB_password
+    print 'DB_Host: ', DB_host
+    print  'DB_Port:', DB_port
+except:
+    print 'no config'
 
 
 
@@ -51,23 +62,12 @@ def test():
 
 
 
-# # Open a cursor to perform database operations
-# >>> cur = conn.cursor()
-
-# # Execute a command: this creates a new table
-# >>> cur.execute("CREATE TABLE test (id serial PRIMARY KEY, num integer, data varchar);")
-
-
-
-#heroku pg:psql
-
 
 #http://neillobo.azurewebsites.net/setting-up-postgres-on-heroku/
 @app.route("/test2")
 def test2():
     try:
         urlparse.uses_netloc.append("postgres")
-      #parse the 'DATABASE_URL' variable into url
         url = urlparse.urlparse(os.environ["DATABASE_URL"])
         print 'got in'
         conn = psycopg2.connect(
