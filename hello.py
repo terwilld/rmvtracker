@@ -79,11 +79,11 @@ def test2():
         )
         print 'made connection'
       #cur is the cursor which is used to execute all PSQL queries
-        print str(url.path[1:])+'database'
-        print str(url.username)+'user'
-        print str(url.password)+'password'
-        print str(url.hostname)+'host'
-        print str(url.port)+'port'
+        print 'database: ' + str(url.path[1:])
+        print 'user: ' + str(url.username)
+        print 'password: ' + str(url.password)
+        print 'host: ' + str(url.hostname)
+        print 'port: ' + str(url.port)
 
         print 'test 1234'
         cur = conn.cursor()
