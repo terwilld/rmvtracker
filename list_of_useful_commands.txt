@@ -1,0 +1,55 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		#PSQL
+
+heroku pg:psql
+		Connects to the heroku psql
+
+      psql                login
+      \du                 lists user accounts
+      \list               lists databases        
+      \dt                 lists tables
+      \connect (data base)    connects to the target database
+      create database 'name'  create database
+      drop database 'name'    deletes database
+      SELECT * FROM 'table name';     shows contents of the table
+      \q quits when in terminal  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

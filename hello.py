@@ -59,7 +59,7 @@ def test():
 
 
 
-
+#heroku pg:psql
 
 
 #http://neillobo.azurewebsites.net/setting-up-postgres-on-heroku/
