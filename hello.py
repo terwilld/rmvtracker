@@ -80,19 +80,18 @@ def test():
 @app.route("/test2")
 def test2():
     try:
-        urlparse.uses_netloc.append("postgres")
-        url = urlparse.urlparse(os.environ["DATABASE_URL"])
+        #urlparse.uses_netloc.append("postgres")
+        #url = urlparse.urlparse(os.environ["DATABASE_URL"])
         print 'got in'
         conn = psycopg2.connect(
-         database=url.path[1:],
-         user=url.username,
-         password=url.password,
-         host=url.hostname,
-         port=url.port
+         database=DB_name,
+         user=DB_user,
+         password=DB_password,
+         host=DB_host,
+         port=DB_port
         )
         print 'made connection'
       #cur is the cursor which is used to execute all PSQL queries
-        print type(url.path[1:])
         print 'database type : ', type(url.path[1:]), ' Database name: ', str(url.path[1:])
         print 'user type : ', type(url.username), ' User:  ', str(url.username)
         print 'password type: ', type(url.password), ' Password: ', str(url.password)
