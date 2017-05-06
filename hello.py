@@ -80,11 +80,11 @@ def test2():
         print 'made connection'
       #cur is the cursor which is used to execute all PSQL queries
         print type(url.path[1:])
-        print 'database type : ', type(url.path[1:]), 'Database name: ', str(url.path[1:])
-        print 'user type : '+type(url.username)+'user:  '+str(url.username)
-        print 'password type: ' + type(url.password) + 'password: ' + str(url.password)
-        print 'host type : ' + type (url.hostname) + 'host: ' + str(url.hostname)
-        print 'port type: ' + type(url.port) + 'port: ' + str(url.port)
+        print 'database type : ', type(url.path[1:]), ' Database name: ', str(url.path[1:])
+        print 'user type : ',type(url.username),' User:  ',str(url.username)
+        print 'password type: ',type(url.password)' Password: ',str(url.password)
+        print 'host type : ',type (url.hostname),' Host: ',str(url.hostname)
+        print 'port type: ',type(url.port), ' Port: ',str(url.port)
 
         print 'test 1234'
         cur = conn.cursor()
