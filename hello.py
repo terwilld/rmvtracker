@@ -14,7 +14,7 @@ try:
     print 'DB_User: ', DB_user
     print 'DB_Password: ', DB_password
     print 'DB_Host: ', DB_host
-    print  'DB_Port:', DB_port
+    print 'DB_Port:', DB_port
 except:
     print 'no config'
     urlparse.uses_netloc.append("postgres")
@@ -22,8 +22,16 @@ except:
     url = urlparse.urlparse(os.environ["DATABASE_URL"])
     print 'test 2'
     DB_name = url.path[1:]
+    DB_user = url.username
+    DB_password = url.password
+    DB_host = url.hostname
+    DB_port = url.port
     print 'test 3'
-    print DB_name
+    print 'DB_name: ', DB_name
+    print 'DB_user: ', DB_user
+    print 'DB_password: ', DB_password
+    print 'DB_host: ', DB_host
+    print 'DB_port: ', DB_port
     print 'test 4'
 
 mail = Mail()
