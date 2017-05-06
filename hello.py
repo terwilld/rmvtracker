@@ -17,9 +17,10 @@ try:
     print  'DB_Port:', DB_port
 except:
     print 'no config'
-
-
-
+    DB_name = url.path[1:]
+    print 'test'
+    print DB_name
+    print 'test1'
 
 mail = Mail()
 app = Flask(__name__)
