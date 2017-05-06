@@ -17,10 +17,14 @@ try:
     print  'DB_Port:', DB_port
 except:
     print 'no config'
-    DB_name = url.path[1:]
-    print 'test'
-    print DB_name
+    urlparse.uses_netloc.append("postgres")
     print 'test1'
+    url = urlparse.urlparse(os.environ["DATABASE_URL"])
+    print 'test 2'
+    DB_name = url.path[1:]
+    print 'test 3'
+    print DB_name
+    print 'test 4'
 
 mail = Mail()
 app = Flask(__name__)
