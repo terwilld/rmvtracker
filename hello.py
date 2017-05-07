@@ -5,46 +5,43 @@ from forms import ContactForm
 from flask.ext.mail import Message, Mail
 import psycopg2
 import urlparse
-
+from subprocess import Popen, PIPE
 try:
     print 'trying to get config file'
     from config import * 
-    #heroku config:get DATABASE_URL -a rmv-scraping
-
-    url = os.system("heroku config:get DATABASE_URL -a rmv-scraping")
-    print url 
-    print 'url'
-    print 'got config file'
-    # set variables
-    DB_name = url.path[1:]
-    DB_user = url.username
-    DB_password = url.password
-    DB_host = url.hostname
-    DB_port = url.port    
-    print 'DB_name: ', DB_name 
-    print 'DB_User: ', DB_user
-    print 'DB_Password: ', DB_password
-    print 'DB_Host: ', DB_host
-    print 'DB_Port:', DB_port
-except:
-    print 'no config'
+    stdout = Popen('heroku config:get DATABASE_URL -a rmv-scraping', shell=True, stdout=PIPE).stdout
+    DATABASE_URL = stdout.read()
     urlparse.uses_netloc.append("postgres")
-    print 'test1'
-    url = urlparse.urlparse(os.environ["DATABASE_URL"])
-    print url
-    print 'test 2'
+    url=urlparse.urlparse(DATABASE_URL)
     DB_name = url.path[1:]
     DB_user = url.username
     DB_password = url.password
     DB_host = url.hostname
     DB_port = url.port
-    print 'test 3'
-    print 'DB_name: ', DB_name
-    print 'DB_user: ', DB_user
-    print 'DB_password: ', DB_password
-    print 'DB_host: ', DB_host
-    print 'DB_port: ', DB_port
-    print 'test 4'
+    DB_name=DB_name[:-1]
+    print 'got config file this must be a local build'
+except:
+    print 'no config perhaps this is a deployed build'
+    urlparse.uses_netloc.append("postgres")
+    url = urlparse.urlparse(os.environ["DATABASE_URL"])
+    DB_name = url.path[1:]
+    DB_user = url.username
+    DB_password = url.password
+    DB_host = url.hostname
+    DB_port = url.port
+    print '<not inside local test> DB_name: ', DB_name
+    print '<not inside local test> DB_user: ', DB_user
+    print '<not inside local test> DB_password: ', DB_password
+    print '<not inside local test> DB_host: ', DB_host
+    print '<not inside local test> DB_port: ', DB_port
+    print 'database type : ', type(url.path[1:]), ' Database name: ', str(url.path[1:])
+    print 'user type : ', type(url.username), ' User:  ', str(url.username)
+    print 'password type: ', type(url.password), ' Password: ', str(url.password)
+    print 'host type : ', type (url.hostname), ' Host: ', str(url.hostname)
+    print 'port type: ', type(url.port), ' Port: ', str(url.port)
+
+
+
 
 mail = Mail()
 app = Flask(__name__)
@@ -54,10 +51,7 @@ app.config["MAIL_PORT"] = 465
 app.config["MAIL_USE_SSL"] = True
 app.config["MAIL_USERNAME"] = 'terwilld@gmail.com'
 app.config["MAIL_PASSWORD"] = 'incorrect'
-
 mail.init_app(app)
-
-
 @app.route("/base")
 def base():
     return render_template('base.html')
@@ -106,11 +100,6 @@ def test2():
         print 'made connection'
       
       #cur is the cursor which is used to execute all PSQL queries
-        print 'database type : ', type(url.path[1:]), ' Database name: ', str(url.path[1:])
-        print 'user type : ', type(url.username), ' User:  ', str(url.username)
-        print 'password type: ', type(url.password), ' Password: ', str(url.password)
-        print 'host type : ', type (url.hostname), ' Host: ', str(url.hostname)
-        print 'port type: ', type(url.port), ' Port: ', str(url.port)
 
         cur = conn.cursor()
         print ' test 2352134'
