@@ -18,7 +18,12 @@ try:
     DB_password = url.password
     DB_host = url.hostname
     DB_port = url.port
-    DB_name=DB_name[:-1]
+    DB_name=DB_name[:-1]    #not even a little sure why this is needed, but there was a phantom /n
+    print '<local test> DB_name: ', DB_name
+    print '<local test> DB_user: ', DB_user
+    print '<local test> DB_password: ', DB_password
+    print '<local test> DB_host: ', DB_host
+    print '<local test> DB_port: ', DB_port    
     print 'got config file this must be a local build'
 except:
     print 'no config perhaps this is a deployed build'

@@ -217,22 +217,33 @@ except:
 
 
 
-<h2>&emsp;<b>Connecting to heroku psql Addon:</b></h2>
+<h2>&emsp;<b>Creating and connecting to heroku psql Addon:</b></h2>
 
 
-<p>&emsp;So far, testing psql was done not on within the local python environment.  First thing is to install the needed modules within the venv python version.  The local version of python needs psycopg2 and pandas installed: requirements.txt is updated and the version is pushed just to test.</p>
+<p>&emsp;So far, testing psql was done on a local psql.  Time to make a heroku addon and start using it, both from the deployed app and during local development.  <a href="https://devcenter.heroku.com/articles/heroku-postgresql#connecting-in-python">General heroku instructions here</a>.  First thing is to install the needed modules within the local python.  The local version of python needs psycopg2 and pandas installed: requirements.txt is updated and the app is pushed just to test if additions were added correctly. </p>
 
 
 <pre class="prettyprint lang-css linenums">
+pip install pandas
+pip install psycopg2
 pip freeze > requirements.txt
 git add .
-git push "testing correct pip config"
+git push -m "testing correct pip config"
 git push heroku master
+</pre>
+
+<p>&emsp;Create a postgresql database on Heroku:</p>
+
+<!-- Make db post gres -->
+<pre class="prettyprint lang-css linenums">
+heroku addons:create heroku-postgresql:hobby-dev
 </pre>
 
 
 
-<!-- Make db post gres -->
+
+
+
 <!-- promote it -->
 <!-- use strings to get credentials variables -->
 

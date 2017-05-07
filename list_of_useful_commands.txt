@@ -28,8 +28,9 @@ heroku pg:psql
       SELECT * FROM 'table name';     shows contents of the table
       \q quits when in terminal  
 
+	git push -u origin master
 
-
+heroku pg:info
 
 
 
