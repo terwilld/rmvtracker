@@ -239,6 +239,23 @@ git push heroku master
 heroku addons:create heroku-postgresql:hobby-dev
 </pre>
 
+<p>&emsp;The DATABASE_URL is created on Heroku and can be accessed in the database interface or from the command line:</p>
+<pre class="prettyprint lang-css linenums">
+heroku config:get DATABASE_URL -a rmv-scraping
+</pre>
+
+<p>&emsp;Database credentials must be accessed from within the running app.  The app must be able to access the database both when run from a local environment ($python hello.py) and once deployed on Heroku.  The general scheme to achieve this is to have a try except branch at the top of the file; one path gathers the credentials for a local execution while the other gathers credentials for the deployed app.  Logic for determining whether an execution is local or deployed is done by creating a config.py file in the root folder which contains initially credentials for debugging [eventually unused].  Config.py is then added to the gitignore so the config.py file exists on the local deployment but not the deployed.  So geneally:</p>
+
+<pre class="prettyprint lang-css linenums">
+try:
+    print 'Config imported:  Local build'
+    from config import * 
+    #   gather DB credentials for local 
+except:
+    print 'no config imported: this is a deployed build'
+
+
+</pre>
 
 
 

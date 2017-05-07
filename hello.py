@@ -7,7 +7,7 @@ import psycopg2
 import urlparse
 from subprocess import Popen, PIPE
 try:
-    print 'trying to get config file'
+    print 'Config imported:  Local build'
     from config import * 
     stdout = Popen('heroku config:get DATABASE_URL -a rmv-scraping', shell=True, stdout=PIPE).stdout
     DATABASE_URL = stdout.read()
@@ -26,7 +26,7 @@ try:
     print '<local test> DB_port: ', DB_port    
     print 'got config file this must be a local build'
 except:
-    print 'no config perhaps this is a deployed build'
+    print 'no config imported: this is a deployed build'
     urlparse.uses_netloc.append("postgres")
     url = urlparse.urlparse(os.environ["DATABASE_URL"])
     DB_name = url.path[1:]
