@@ -9,7 +9,18 @@ import urlparse
 try:
     print 'trying to get config file'
     from config import * 
+    #heroku config:get DATABASE_URL -a rmv-scraping
+
+    url = os.system("heroku config:get DATABASE_URL -a rmv-scraping")
+    print url 
+    print 'url'
     print 'got config file'
+    # set variables
+    DB_name = url.path[1:]
+    DB_user = url.username
+    DB_password = url.password
+    DB_host = url.hostname
+    DB_port = url.port    
     print 'DB_name: ', DB_name 
     print 'DB_User: ', DB_user
     print 'DB_Password: ', DB_password
@@ -20,6 +31,7 @@ except:
     urlparse.uses_netloc.append("postgres")
     print 'test1'
     url = urlparse.urlparse(os.environ["DATABASE_URL"])
+    print url
     print 'test 2'
     DB_name = url.path[1:]
     DB_user = url.username
@@ -88,9 +100,11 @@ def test2():
          user=DB_user,
          password=DB_password,
          host=DB_host,
-         port=DB_port
+         port=DB_port,
+         sslmode='require'
         )
         print 'made connection'
+      
       #cur is the cursor which is used to execute all PSQL queries
         print 'database type : ', type(url.path[1:]), ' Database name: ', str(url.path[1:])
         print 'user type : ', type(url.username), ' User:  ', str(url.username)
@@ -98,12 +112,10 @@ def test2():
         print 'host type : ', type (url.hostname), ' Host: ', str(url.hostname)
         print 'port type: ', type(url.port), ' Port: ', str(url.port)
 
-        print 'test 1234'
         cur = conn.cursor()
         print ' test 2352134'
         
-        print 'test 99999'
-        #cur.execute("CREATE TABLE customers (id SERIAL PRIMARY KEY, name VARCHAR age INTEGER);")
+
         try:
             print 'test 1230 inside try'
             #cur.execute("CREATE TABLE Current_Data(Date_time VARCHAR(35)")
