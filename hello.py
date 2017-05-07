@@ -102,19 +102,14 @@ def test2():
       #cur is the cursor which is used to execute all PSQL queries
 
         cur = conn.cursor()
-        print ' test 2352134'
-        
-
         try:
-            print 'test 1230 inside try'
-            #cur.execute("CREATE TABLE Current_Data(Date_time VARCHAR(35)")
+            print 'test inside try make table'
+
             cur.execute("CREATE TABLE test_1 (id serial PRIMARY KEY, num integer, data varchar);")
-            print 'after make table'
-            #cur.execute("CREATE TABLE customers (id SERIAL PRIMARY KEY, name VARCHAR age INTEGER);")
+            print 'made table'
         except:
 
             return 'failed'
-        print 'made table'
         conn.commit()
         print 'commited'
 
