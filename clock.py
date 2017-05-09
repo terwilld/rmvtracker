@@ -1,7 +1,41 @@
 from apscheduler.schedulers.blocking import BlockingScheduler
+
 from scrape_locations import *
+import psycopg2,urlparse
+from subprocess import Popen, PIPE
+
 
 sched = BlockingScheduler()
+
+
+	#Gather DB credentials
+try:
+    print 'no config imported: this is a deployed build'
+    urlparse.uses_netloc.append("postgres")
+    url = urlparse.urlparse(os.environ["DATABASE_URL"])
+    DB_name = url.path[1:]
+    DB_user = url.username
+    DB_password = url.password
+    DB_host = url.hostname
+    DB_port = url.port
+    print '<clocks.py not inside local test> DB_name: ', DB_name
+    print '<clocks.py not inside local test> DB_user: ', DB_user
+    print '<clocks.py not inside local test> DB_password: ', DB_password
+    print '<clocks.py not inside local test> DB_host: ', DB_host
+    print '<clocks.py not inside local test> DB_port: ', DB_port
+    print 'database type : ', type(url.path[1:]), ' Database name: ', str(url.path[1:])
+    print 'user type : ', type(url.username), ' User:  ', str(url.username)
+    print 'password type: ', type(url.password), ' Password: ', str(url.password)
+    print 'host type : ', type (url.hostname), ' Host: ', str(url.hostname)
+    print 'port type: ', type(url.port), ' Port: ', str(url.port)
+
+except:
+	print 'clocks data base credentials failed to gather'
+
+
+
+
+
 
 
 
