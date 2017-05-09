@@ -31,6 +31,7 @@ heroku pg:psql
 	git push -u origin master
 
 heroku pg:info
+select count(*) from current_data;
 
 
 
