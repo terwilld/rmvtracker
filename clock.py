@@ -10,6 +10,7 @@ sched = BlockingScheduler()
 
 	#Gather DB credentials
 try:
+
     print 'clocks.py: no config imported: this is a deployed build'
     urlparse.uses_netloc.append("postgres")
     url = urlparse.urlparse(os.environ["DATABASE_URL"])
@@ -25,14 +26,10 @@ try:
     # print '<clocks.py not inside local test> DB_port: ', DB_port
 
     tz = timezone('EST')
-
-	date_time=datetime.now(tz).isoformat()
-
-	print 'Date time with timezone specified: ' + date_time  
-
-	date_time=datetime.now().isoformat()
-
-	print 'Date time without timezone specified: ' + date_time   
+    date_time=datetime.now(tz).isoformat()
+    print 'Date time with timezone specified: ' + date_time  
+    date_time=datetime.now().isoformat()
+    print 'Date time without timezone specified: ' + date_time   
 except:
 	print 'clocks data base credentials failed to gather'
 
