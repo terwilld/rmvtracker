@@ -1,5 +1,6 @@
 from apscheduler.schedulers.blocking import BlockingScheduler
 from scrape_locations import *
+
 sched = BlockingScheduler()
 
 
@@ -18,7 +19,7 @@ print 'test_1_!_1'
 def scheduled_job():
     print('This job is run every weekday every 3 minutes without the hour addition.')
     print '123432123'
-    Result_List=add_a_reading(list_of_towns)
+    #Result_List=add_a_reading(list_of_towns)
     print Result_List
     print 'test'
 
