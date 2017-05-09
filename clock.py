@@ -21,6 +21,11 @@ def scheduled_job():
     print '123432123'
     #Result_List=add_a_reading(list_of_towns)
     #print Result_List
+    list_of_towns=['Attleboro','Boston','Braintree','Brockton','Chicopee','Easthampton','Fall%20River','Greenfield','Haverhill','Lawrence','Leominster','Lowell','Martha%27s%20Vineyard','Milford','Nantucket','Natick','New%20Bedford','North%20Adams','Pittsfield','Plymouth','Revere','Roslindale','South%20Yarmouth','Springfield','Taunton','Watertown','Wilmington','Worcester']
+    Result_List=add_a_reading(list_of_towns)
+    print Result_List
+    print 'test'
+
     print 'test'
 
 
