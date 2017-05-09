@@ -79,6 +79,7 @@ def add_a_reading(list_of_towns):
     if len(results)==56:
             tz = timezone('EST')
             date_time=datetime.now(tz).isoformat()
+            print date_time
             results=[date_time]+results
             return results
     else:

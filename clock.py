@@ -28,6 +28,9 @@ try:
     # print 'password type: ', type(url.password), ' Password: ', str(url.password)
     # print 'host type : ', type (url.hostname), ' Host: ', str(url.hostname)
     # print 'port type: ', type(url.port), ' Port: ', str(url.port)
+    tz = timezone('EST')
+    date_time=datetime.now(tz).isoformat()
+    print date_time    
 except:
 	print 'clocks data base credentials failed to gather'
 
