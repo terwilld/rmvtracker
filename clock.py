@@ -23,14 +23,12 @@ try:
     # print '<clocks.py not inside local test> DB_password: ', DB_password
     # print '<clocks.py not inside local test> DB_host: ', DB_host
     # print '<clocks.py not inside local test> DB_port: ', DB_port
-    # print 'database type : ', type(url.path[1:]), ' Database name: ', str(url.path[1:])
-    # print 'user type : ', type(url.username), ' User:  ', str(url.username)
-    # print 'password type: ', type(url.password), ' Password: ', str(url.password)
-    # print 'host type : ', type (url.hostname), ' Host: ', str(url.hostname)
-    # print 'port type: ', type(url.port), ' Port: ', str(url.port)
+
     tz = timezone('EST')
-    date_time=datetime.now(tz).isoformat()
-    print 'Date time',date_time     
+	date_time=datetime.now(tz).isoformat()
+	print 'Date time with timezone specified',date_time   
+	date_time=datetime.now().isoformat()
+	print 'Date time without timezone specified',date_time   
 except:
 	print 'clocks data base credentials failed to gather'
 
