@@ -15,7 +15,7 @@ def scheduled_job_1():
 
 
 print 'test_1_!_1'
-@sched.scheduled_job('cron', day_of_week='mon-fri', minute='*/3')
+@sched.scheduled_job('cron', day_of_week='mon-fri', minute='*/10')
 def scheduled_job():
     print('This job is run every weekday every 3 minutes without the hour addition.')
     print '123432123'
