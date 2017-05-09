@@ -28,11 +28,11 @@ try:
 
 	date_time=datetime.now(tz).isoformat()
 
-	print 'Date time with timezone specified',date_time  
+	print 'Date time with timezone specified: ' + date_time  
 
 	date_time=datetime.now().isoformat()
-	
-	print 'Date time without timezone specified',date_time   
+
+	print 'Date time without timezone specified: ' + date_time   
 except:
 	print 'clocks data base credentials failed to gather'
 
@@ -94,7 +94,7 @@ def scheduled_job_1():
     print('This job is run every weekday every 3 minutes with the hour addition.')
     tz = timezone('EST')
     date_time=datetime.now(tz).isoformat()
-    print 'Date time',date_time    
+    print 'Date time: ' + date_time    
 
 
 
