@@ -30,7 +30,7 @@ try:
     # print 'port type: ', type(url.port), ' Port: ', str(url.port)
     tz = timezone('EST')
     date_time=datetime.now(tz).isoformat()
-    print date_time    
+    print 'Date time',date_time     
 except:
 	print 'clocks data base credentials failed to gather'
 
@@ -87,9 +87,14 @@ except:
 
 
 
-# @sched.scheduled_job('cron', day_of_week='mon-fri', hour='6-22', minute='*/3')
-# def scheduled_job_1():
-#     print('This job is run every weekday every 3 minutes with the hour addition.')
+@sched.scheduled_job('cron', day_of_week='mon-fri', hour='6-22', minute='*/3')
+def scheduled_job_1():
+    print('This job is run every weekday every 3 minutes with the hour addition.')
+    tz = timezone('EST')
+    date_time=datetime.now(tz).isoformat()
+    print 'Date time',date_time    
+
+
 
 
 print 'test_1_!_1'
