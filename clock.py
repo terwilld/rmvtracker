@@ -1,5 +1,5 @@
 from apscheduler.schedulers.blocking import BlockingScheduler
-
+from scrape_locations import *
 sched = BlockingScheduler()
 
 
