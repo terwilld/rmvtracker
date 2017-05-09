@@ -40,7 +40,6 @@ try:
     cur = conn.cursor()
     
     print 'test inside try make table'
-    cur.execute("CREATE TABLE test_2 (id serial PRIMARY KEY, num integer, data varchar);")
 
     cur.execute("CREATE TABLE Current_Data(Date_time VARCHAR(35),\
 	    Attleboro_Licensing INT, Attleboro_Registration INT, \
@@ -75,7 +74,7 @@ try:
     conn.close()
     print 'made table'
 except:
-    return 'clocks.py failed to connect or the table was already created'
+    print 'clocks.py failed to connect or the table was already created'
 
 
 
