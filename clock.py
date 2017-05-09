@@ -10,7 +10,7 @@ sched = BlockingScheduler()
 
 	#Gather DB credentials
 try:
-    print 'no config imported: this is a deployed build'
+    print 'clocks.py: no config imported: this is a deployed build'
     urlparse.uses_netloc.append("postgres")
     url = urlparse.urlparse(os.environ["DATABASE_URL"])
     DB_name = url.path[1:]
@@ -18,34 +18,76 @@ try:
     DB_password = url.password
     DB_host = url.hostname
     DB_port = url.port
-    print '<clocks.py not inside local test> DB_name: ', DB_name
-    print '<clocks.py not inside local test> DB_user: ', DB_user
-    print '<clocks.py not inside local test> DB_password: ', DB_password
-    print '<clocks.py not inside local test> DB_host: ', DB_host
-    print '<clocks.py not inside local test> DB_port: ', DB_port
-    print 'database type : ', type(url.path[1:]), ' Database name: ', str(url.path[1:])
-    print 'user type : ', type(url.username), ' User:  ', str(url.username)
-    print 'password type: ', type(url.password), ' Password: ', str(url.password)
-    print 'host type : ', type (url.hostname), ' Host: ', str(url.hostname)
-    print 'port type: ', type(url.port), ' Port: ', str(url.port)
-
+    # print '<clocks.py not inside local test> DB_name: ', DB_name
+    # print '<clocks.py not inside local test> DB_user: ', DB_user
+    # print '<clocks.py not inside local test> DB_password: ', DB_password
+    # print '<clocks.py not inside local test> DB_host: ', DB_host
+    # print '<clocks.py not inside local test> DB_port: ', DB_port
+    # print 'database type : ', type(url.path[1:]), ' Database name: ', str(url.path[1:])
+    # print 'user type : ', type(url.username), ' User:  ', str(url.username)
+    # print 'password type: ', type(url.password), ' Password: ', str(url.password)
+    # print 'host type : ', type (url.hostname), ' Host: ', str(url.hostname)
+    # print 'port type: ', type(url.port), ' Port: ', str(url.port)
 except:
 	print 'clocks data base credentials failed to gather'
 
 
+	# Make current data table if it doesn't exist
+try:
+    print 'got in'
+    conn = psycopg2.connect(database=DB_name,user=DB_user,password=DB_password,host=DB_host,port=DB_port,sslmode='require')
+    print 'made connection'
+    cur = conn.cursor()
+    
+    print 'test inside try make table'
+    cur.execute("CREATE TABLE test_2 (id serial PRIMARY KEY, num integer, data varchar);")
+
+    cur.execute("CREATE TABLE Current_Data(Date_time VARCHAR(35),\
+	    Attleboro_Licensing INT, Attleboro_Registration INT, \
+	    Boston_Licensing INT, Boston_Registration INT, \
+	    Braintree_Licensing INT, Braintree_Registration INT, \
+	    Brockton_Licensing INT, Brockton_Registration INT, \
+	    Chicopee_Licensing INT, Chicopee_Registration INT, \
+	    Easthampton_Licensing INT, Easthampton_Registration INT, \
+	    Fall_River_Licensing INT, Fall_River_Registration INT, \
+	    Greenfield_Licensing INT, Greenfield_Registration INT, \
+	    Haverhill_Licensing INT, Haverhill_Registration INT, \
+	    Lawrence_Licensing INT, Lawrence_Registration INT, \
+	    Leominster_Licensing INT, Leominster_Registration INT, \
+	    Lowell_Licensing INT, Lowell_Registration INT, \
+	    Marthas_Vineyard_Licensing INT, Marthas_Vineyard_Registration INT, \
+	    Milford_Licensing INT, Milford_Registration INT, \
+	    Nantucket_Licensing INT, Nantucket_Registration INT, \
+	    Natick_Licensing INT, Natick_Registration INT, \
+	    New_Bedford_Licensing INT, New_Bedford_Registration INT, \
+	    North_Adams_Licensing INT, North_Adams_Registration INT, \
+	    Pittsfield_Licensing INT, Pittsfield_Registration INT, \
+	    Plymouth_Licensing INT, Plymouth_Registration INT, \
+	    Revere_Licensing INT, Revere_Registration INT, \
+	    Roslindale_Licensing INT, Roslindale_Registration INT, \
+	    South_Yarmouth_Licensing INT, South_Yarmouth_Registration INT, \
+	    Springfield_Licensing INT, Springfield_Registration INT, \
+	    Taunton_Licensing INT, Taunton_Registration INT, \
+	    Watertown_Licensing INT, Watertown_Registration INT, \
+	    Wilmington_Licensing INT, Wilmington_Registration INT, \
+	    Worcester_Licensing INT, Worcester_Registration INT)")
+    conn.commit()
+    conn.close()
+    print 'made table'
+except:
+    return 'clocks.py failed to connect or the table was already created'
 
 
 
 
 
 
-# @sched.scheduled_job('interval', minutes=3)
-# def timed_job():
-#     print('This job is run every three minutes.')
 
-@sched.scheduled_job('cron', day_of_week='mon-fri', hour='6-22', minute='*/3')
-def scheduled_job_1():
-    print('This job is run every weekday every 3 minutes with the hour addition.')
+
+
+# @sched.scheduled_job('cron', day_of_week='mon-fri', hour='6-22', minute='*/3')
+# def scheduled_job_1():
+#     print('This job is run every weekday every 3 minutes with the hour addition.')
 
 
 print 'test_1_!_1'
