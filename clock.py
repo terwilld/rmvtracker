@@ -61,6 +61,43 @@ def scheduled_job():
     print 'test'
 
     print 'test'
+    conn = psycopg2.connect(database=DB_name,user=DB_user,password=DB_password,host=DB_host,port=DB_port,sslmode='require')
+    print 'made connection'
+    cur = conn.cursor()
+    print 'about to try and place in the database'
+
+    cur.execute("INSERT into Current_data(Date_time, \
+        Attleboro_Licensing, Attleboro_Registration, \
+        Boston_Licensing, Boston_Registration, \
+        Braintree_Licensing, Braintree_Registration, \
+        Brockton_Licensing, Brockton_Registration, \
+        Chicopee_Licensing, Chicopee_Registration, \
+        Easthampton_Licensing, Easthampton_Registration, \
+        Fall_River_Licensing, Fall_River_Registration, \
+        Greenfield_Licensing, Greenfield_Registration, \
+        Haverhill_Licensing, Haverhill_Registration, \
+        Lawrence_Licensing, Lawrence_Registration, \
+        Leominster_Licensing, Leominster_Registration, \
+        Lowell_Licensing, Lowell_Registration, \
+        Marthas_Vineyard_Licensing, Marthas_Vineyard_Registration, \
+        Milford_Licensing, Milford_Registration, \
+        Nantucket_Licensing, Nantucket_Registration, \
+        Natick_Licensing, Natick_Registration, \
+        New_Bedford_Licensing, New_Bedford_Registration, \
+        North_Adams_Licensing, North_Adams_Registration, \
+        Pittsfield_Licensing, Pittsfield_Registration, \
+        Plymouth_Licensing, Plymouth_Registration, \
+        Revere_Licensing, Revere_Registration, \
+        Roslindale_Licensing, Roslindale_Registration, \
+        South_Yarmouth_Licensing, South_Yarmouth_Registration, \
+        Springfield_Licensing, Springfield_Registration, \
+        Taunton_Licensing, Taunton_Registration, \
+        Watertown_Licensing, Watertown_Registration, \
+        Wilmington_Licensing, Wilmington_Registration, \
+        Worcester_Licensing, Worcester_Registration) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s,%s, %s, %s, %s, %s, %s, %s, %s, %s, %s,%s, %s, %s, %s, %s, %s, %s, %s, %s,%s, %s, %s, %s, %s, %s, %s, %s, %s, %s,%s, %s, %s, %s, %s, %s, %s, %s, %s, %s,%s, %s, %s, %s, %s, %s, %s, %s)", Result_List)
+    print'may have actually put into the database'
+    conn.commit()
+    conn.close()
 
 
 
