@@ -8,6 +8,14 @@ from subprocess import Popen, PIPE
 sched = BlockingScheduler()
 
 
+
+
+tz = timezone('EST')
+date_time=datetime.now(tz).isoformat()
+print 'Date time with timezone specified: ' + date_time  
+date_time=datetime.now().isoformat()
+print 'Date time without timezone specified: ' + date_time 
+
 	#Gather DB credentials
 try:
 
@@ -25,11 +33,7 @@ try:
     # print '<clocks.py not inside local test> DB_host: ', DB_host
     # print '<clocks.py not inside local test> DB_port: ', DB_port
 
-    tz = timezone('EST')
-    date_time=datetime.now(tz).isoformat()
-    print 'Date time with timezone specified: ' + date_time  
-    date_time=datetime.now().isoformat()
-    print 'Date time without timezone specified: ' + date_time   
+  
 except:
 	print 'clocks data base credentials failed to gather'
 
