@@ -1,9 +1,8 @@
 import psycopg2
 import os.path,urllib2,requests,datetime,csv,time,logging
 from bs4 import BeautifulSoup
-from datetime import datetime, timedelta
-from pytz import timezone
-
+import datetime
+import pytz
 
 
 
@@ -76,9 +75,8 @@ def add_a_reading(list_of_towns):
     #   Add results to CSV
 
     if len(results)==56:
-            tz = timezone('EST')
-            date_time=datetime.now(tz).isoformat()
-            print date_time
+            date_time=datetime.datetime.now(pytz.timezone("America/New_York")).isoformat())
+            #print date_time
             results=[date_time]+results
             return results
     else:

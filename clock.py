@@ -91,9 +91,21 @@ except:
 @sched.scheduled_job('cron', day_of_week='mon-fri', hour='6-22', minute='*/3')
 def scheduled_job_1():
     print('This job is run every weekday every 3 minutes with the hour addition.')
-    tz = timezone('EST')
+    tz = timezone('America/New_York')
     date_time=datetime.now(tz).isoformat()
     print 'Date time: ' + date_time    
+
+
+
+
+# #Switch to this remove lots of shit
+# timestamp = datetime.datetime.now(pytz.timezone("America/New_York")).time()
+# start,end = datetime.time(7), datetime.time(19)
+
+# if start <= timestamp <= end:
+#     print 'do this its true'
+
+
 
 
 
@@ -104,10 +116,9 @@ def scheduled_job():
     print('This job is run every weekday every 3 minutes without the hour addition.')
     list_of_towns=['Attleboro','Boston','Braintree','Brockton','Chicopee','Easthampton','Fall%20River','Greenfield','Haverhill','Lawrence','Leominster','Lowell','Martha%27s%20Vineyard','Milford','Nantucket','Natick','New%20Bedford','North%20Adams','Pittsfield','Plymouth','Revere','Roslindale','South%20Yarmouth','Springfield','Taunton','Watertown','Wilmington','Worcester']
     Result_List=add_a_reading(list_of_towns)
-    tz = timezone('EST')
-    date_time=datetime.now(tz)+ timedelta(hours=1)
-    date_time=date_time.isoformat()
-    Result_List[0]=date_time
+
+
+
     print Result_List
 
     conn = psycopg2.connect(database=DB_name,user=DB_user,password=DB_password,host=DB_host,port=DB_port,sslmode='require')

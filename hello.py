@@ -9,6 +9,8 @@ from subprocess import Popen, PIPE
 import time
 from scrape_locations import *
 
+
+
 try:
     print 'Config imported:  Local build'
     from config import * 
