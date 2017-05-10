@@ -16,7 +16,7 @@ print 'Date time with timezone specified: ' + date_time
 date_time=datetime.now().isoformat()
 print 'Date time without timezone specified: ' + date_time 
 
-	#Gather DB credentials
+	#Gather DB credentials 
 try:
 
     print 'clocks.py: no config imported: this is a deployed build'
