@@ -75,7 +75,7 @@ def add_a_reading(list_of_towns):
     #   Add results to CSV
 
     if len(results)==56:
-        date_time=datetime.datetime.now(pytz.timezone("America/New_York")).isoformat())
+        date_time=datetime.datetime.now(pytz.timezone("America/New_York")).isoformat()
         #print date_time
         results=[date_time]+results
         return results
