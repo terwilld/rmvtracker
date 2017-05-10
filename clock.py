@@ -11,14 +11,8 @@ sched = BlockingScheduler()
 
 
 #nine_hours_from_now = datetime.now() + timedelta(hours=9)
-tz = timezone('EST')
-date_time=datetime.now(tz)+ timedelta(hours=1)
-print 'with adjustment'
-print date_time
-date_time=date_time.isoformat()
-print 'Date time with timezone specified: ' + date_time  
-date_time=datetime.now().isoformat()
-print 'Date time without timezone specified: ' + date_time 
+#date_time=datetime.now().isoformat()
+#print 'Date time without timezone specified: ' + date_time 
 
 	#Gather DB credentials 
 try:
@@ -105,7 +99,7 @@ def scheduled_job_1():
 
 
 print 'test_1_!_1'
-@sched.scheduled_job('cron', day_of_week='mon-fri', minute='*/10')
+@sched.scheduled_job('cron', day_of_week='mon-fri', minute='*/3')
 def scheduled_job():
     print('This job is run every weekday every 3 minutes without the hour addition.')
     print '123432123'
@@ -115,6 +109,22 @@ def scheduled_job():
     Result_List=add_a_reading(list_of_towns)
     print Result_List
     print 'test'
+
+    tz = timezone('EST')
+    date_time=datetime.now(tz)+ timedelta(hours=1)
+    print 'with adjustment'
+    print date_time
+    date_time=date_time.isoformat()
+    print 'Date time with timezone specified: ' + date_time  
+
+
+
+
+
+
+
+
+
 
     print 'test'
     conn = psycopg2.connect(database=DB_name,user=DB_user,password=DB_password,host=DB_host,port=DB_port,sslmode='require')
