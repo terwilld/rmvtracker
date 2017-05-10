@@ -107,15 +107,13 @@ def scheduled_job():
     #print Result_List
     list_of_towns=['Attleboro','Boston','Braintree','Brockton','Chicopee','Easthampton','Fall%20River','Greenfield','Haverhill','Lawrence','Leominster','Lowell','Martha%27s%20Vineyard','Milford','Nantucket','Natick','New%20Bedford','North%20Adams','Pittsfield','Plymouth','Revere','Roslindale','South%20Yarmouth','Springfield','Taunton','Watertown','Wilmington','Worcester']
     Result_List=add_a_reading(list_of_towns)
+    tz = timezone('EST')
+    date_time=datetime.now(tz)+ timedelta(hours=1)
+    date_time=date_time.isoformat()
+    Result_List[0]=date_time
     print Result_List
     print 'test'
 
-    tz = timezone('EST')
-    date_time=datetime.now(tz)+ timedelta(hours=1)
-    print 'with adjustment'
-    print date_time
-    date_time=date_time.isoformat()
-    print 'Date time with timezone specified: ' + date_time  
 
 
 
