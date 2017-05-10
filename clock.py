@@ -99,12 +99,9 @@ def scheduled_job_1():
 
 
 print 'test_1_!_1'
-@sched.scheduled_job('cron', day_of_week='mon-fri', minute='*/3')
+@sched.scheduled_job('cron', day_of_week='mon-fri', minute='*/10')
 def scheduled_job():
     print('This job is run every weekday every 3 minutes without the hour addition.')
-    print '123432123'
-    #Result_List=add_a_reading(list_of_towns)
-    #print Result_List
     list_of_towns=['Attleboro','Boston','Braintree','Brockton','Chicopee','Easthampton','Fall%20River','Greenfield','Haverhill','Lawrence','Leominster','Lowell','Martha%27s%20Vineyard','Milford','Nantucket','Natick','New%20Bedford','North%20Adams','Pittsfield','Plymouth','Revere','Roslindale','South%20Yarmouth','Springfield','Taunton','Watertown','Wilmington','Worcester']
     Result_List=add_a_reading(list_of_towns)
     tz = timezone('EST')
@@ -112,21 +109,9 @@ def scheduled_job():
     date_time=date_time.isoformat()
     Result_List[0]=date_time
     print Result_List
-    print 'test'
 
-
-
-
-
-
-
-
-
-
-
-    print 'test'
     conn = psycopg2.connect(database=DB_name,user=DB_user,password=DB_password,host=DB_host,port=DB_port,sslmode='require')
-    print 'made connection'
+
     cur = conn.cursor()
     print 'about to try and place in the database'
 
