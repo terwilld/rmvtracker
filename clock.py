@@ -12,10 +12,6 @@ sched = BlockingScheduler()
 
 #nine_hours_from_now = datetime.now() + timedelta(hours=9)
 tz = timezone('EST')
-date_time=datetime.now(tz)
-print 'with out adjustment'
-print date_time
-
 date_time=datetime.now(tz)+ timedelta(hours=1)
 print 'with adjustment'
 print date_time
