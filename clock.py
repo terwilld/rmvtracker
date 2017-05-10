@@ -10,8 +10,11 @@ sched = BlockingScheduler()
 
 
 
+#nine_hours_from_now = datetime.now() + timedelta(hours=9)
 tz = timezone('EST')
-date_time=datetime.now(tz).isoformat()
+date_time=datetime.now(tz)+ timedelta(hours=9)
+print date_time
+date_time=date_time.isoformat()
 print 'Date time with timezone specified: ' + date_time  
 date_time=datetime.now().isoformat()
 print 'Date time without timezone specified: ' + date_time 

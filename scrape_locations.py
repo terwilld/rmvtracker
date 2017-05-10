@@ -1,9 +1,8 @@
 import psycopg2
 import os.path,urllib2,requests,datetime,csv,time,logging
 from bs4 import BeautifulSoup
-from datetime import datetime
+from datetime import datetime, timedelta
 from pytz import timezone
-
 
 
 
