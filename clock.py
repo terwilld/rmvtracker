@@ -120,11 +120,11 @@ def scheduled_job_1():
 
     print 'made conneciton'
     rows = cur.fetchall()
-    print rows
-    
+    print rows,rows[0]
+
     conn.commit()
     conn.close()
-
+    print 'got to the end'
 
 
 
