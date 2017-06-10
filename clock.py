@@ -21,9 +21,13 @@ try:
     # print '<clocks.py not inside local test> DB_host: ', DB_host
     # print '<clocks.py not inside local test> DB_port: ', DB_port
 
-  
 except:
 	print 'clocks data base credentials failed to gather'
+
+    #       Try to make both current data and last_week_data tables
+    #       If this command fails, it **most likely** means the tables already exist.
+    #       This is a safegaurd against tables being accidently destroyed
+    #       ensures the tables are in existence on re-deploy
 try:
 
     conn = psycopg2.connect(database=DB_name,user=DB_user,password=DB_password,host=DB_host,port=DB_port,sslmode='require')
@@ -61,7 +65,8 @@ try:
     conn.close()
     print 'made table'
 except:
-    print 'clocks.py failed to connect or the table was already created'
+    #   This is the most probable outcome
+    print 'clocks.py failed to connect or Current_Data table was already created'
 
 
 try:
@@ -101,7 +106,7 @@ try:
     conn.close()
     print 'made last weeks table'
 except:
-    print 'clocks.py failed to connect or the table was already created'
+    print 'clocks.py failed to connect or Last_Week_data table was already created'
 
 
 
@@ -155,10 +160,18 @@ print 'test_1_!_1'
 @sched.scheduled_job('cron', day_of_week='mon-fri', minute='*/10')
 def scheduled_job():
     print('This job is run every weekday every 10 minutes without the hour addition.')
+
+    #       This logical gate is added to deal with the fact that server time is different that EST, 
+    #       additionally, it is not always constant, so the cron is given a large window and the actual window is gaurded against EST here
+    #       
+
+
     timestamp,start,end = datetime.datetime.now(pytz.timezone("America/New_York")).time(),datetime.time(7), datetime.time(19)
     if start <= timestamp <= end:
         try:
             print 'inside time range, execute'
+
+            #   This bit should be re-factored
             list_of_towns=['Attleboro','Boston','Braintree','Brockton','Chicopee','Easthampton','Fall%20River','Greenfield','Haverhill','Lawrence','Leominster','Lowell','Martha%27s%20Vineyard','Milford','Nantucket','Natick','New%20Bedford','North%20Adams','Pittsfield','Plymouth','Revere','Roslindale','South%20Yarmouth','Springfield','Taunton','Watertown','Wilmington','Worcester']
             Result_List=add_a_reading(list_of_towns)
             print Result_List
@@ -200,7 +213,7 @@ def scheduled_job():
         except:
             print 'something failed'
 
-print 'test_2_@_2_2_@'
+print 'test 3, this should always run on re-deploy'
 
 
 sched.start()
