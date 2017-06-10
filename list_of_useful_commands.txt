@@ -29,6 +29,7 @@ heroku pg:psql
       \q quits when in terminal  
 
 	git push -u origin master
+heroku pg:psql
 
 heroku pg:info
 select count(*) from current_data;
