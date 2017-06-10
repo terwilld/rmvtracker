@@ -121,7 +121,8 @@ def scheduled_job_1():
     if row_count > 100:
         print 'the row count is greater than 100'
         print 'the tables need to be rotated'
-        Cur.execute("truncate Last_Week_Data;")
+        #Cur.execute("truncate Last_Week_Data;")
+        cur.execute("TRUNCATE Last_Week_Data;")
         print 'truncated table :last weeks data'
         cur.execute('INSERT INTO Last_Week_Data SELECT * FROM Current_Data;')
         print 'copied data from current to last week'
