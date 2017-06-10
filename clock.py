@@ -138,6 +138,17 @@ def scheduled_job_1():
         row_count=rows[0][0]
         print 'row_count from Last_Week_Data: ',row_count
 
+        print 'truncate current data'
+        cur.execute("TRUNCATE Current_Data;")
+
+        print 'verify truncate current data'
+        cur.execute('select count(*) from Current_Data;')
+        rows = cur.fetchall()
+        row_count=rows[0][0]
+        print 'row_count from current data: ',row_count
+
+
+
         #   Cur.execute("truncate Current_Data;")
         # to be done later
 
