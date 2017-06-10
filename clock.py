@@ -113,23 +113,39 @@ except:
 def scheduled_job_1():
     print('This job is run every saturday every 3 minutes with the hour addition.')
     conn = psycopg2.connect(database=DB_name,user=DB_user,password=DB_password,host=DB_host,port=DB_port,sslmode='require')
-    print 'test1'
     cur = conn.cursor()
-    print 'test2'
     cur.execute('select count(*) from Current_Data;')
-
-    print 'made conneciton'
     rows = cur.fetchall()
-    print rows,rows[0],rows[0][0]
     row_count=rows[0][0]
     print row_count
-
-    conn.commit()
-    conn.close()
-    print 'got to the end'
     if row_count > 100:
         print 'the row count is greater than 100'
+        print 'the tables need to be rotated'
+        Cur.execute("truncate Last_Week_Data;")
+        print 'truncated table :last weeks data'
+        cur.execute('INSERT INTO Last_Week_Data SELECT * FROM Current_Data;')
+        print 'copied data from current to last week'
+        print 'verify the copy worked:'
+
+        cur.execute('select count(*) from Current_Data;')
+        rows = cur.fetchall()
+        row_count=rows[0][0]
+        print 'row_count from current data: ',row_count
+
+        cur.execute('select count(*) from Last_Week_Data;')
+        rows = cur.fetchall()
+        row_count=rows[0][0]
+        print 'row_count from Last_Week_Data: ',row_count
+
+        #   Cur.execute("truncate Current_Data;")
+        # to be done later
+
+    else:
+        print 'did not need to rotate data'
+
     print 'Row Count ',row_count
+    conn.commit()
+    conn.close()
 
 
 print 'test_1_!_1'
