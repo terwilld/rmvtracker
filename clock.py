@@ -112,12 +112,20 @@ except:
 @sched.scheduled_job('cron', day_of_week='sat', hour='6-22', minute='*/3')
 def scheduled_job_1():
     print('This job is run every saturday every 3 minutes with the hour addition.')
+    conn = psycopg2.connect(database=DB_name,user=DB_user,password=DB_password,host=DB_host,port=DB_port,sslmode='require')
+    print 'test1'
+    cur = conn.cursor()
+    print 'test2'
+    cur.execute('select count(*) from Current_Data;')
 
-    print 'test is this triggered'   
-    tz = timezone('America/New_York')
-    date_time=datetime.now(tz).isoformat()
-    print ('Date time: ' + date_time)
-    print 'test is this triggered'   
+    print 'made conneciton'
+    rows = cur.fetchall()
+    print rows
+    
+    conn.commit()
+    conn.close()
+
+
 
 
 print 'test_1_!_1'

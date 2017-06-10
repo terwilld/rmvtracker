@@ -34,7 +34,7 @@ heroku pg:psql
 heroku pg:info
 select count(*) from current_data;
 
-
+SELECT Count(*) from current_data;
 
 
 
