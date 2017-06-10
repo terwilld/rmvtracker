@@ -71,12 +71,12 @@ except:
 
 
 
-# @sched.scheduled_job('cron', day_of_week='mon-fri', hour='6-22', minute='*/3')
-# def scheduled_job_1():
-#     print('This job is run every weekday every 3 minutes with the hour addition.')
-#     tz = timezone('America/New_York')
-#     date_time=datetime.now(tz).isoformat()
-#     print 'Date time: ' + date_time    
+@sched.scheduled_job('cron', day_of_week='sat', hour='6-22', minute='*/3')
+def scheduled_job_1():
+    print('This job is run every saturday every 3 minutes with the hour addition.')
+    tz = timezone('America/New_York')
+    date_time=datetime.now(tz).isoformat()
+    print 'Date time: ' + date_time    
 
 
 print 'test_1_!_1'
