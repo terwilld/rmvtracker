@@ -114,7 +114,8 @@ def scheduled_job_1():
     print('This job is run every saturday every 3 minutes with the hour addition.')
     tz = timezone('America/New_York')
     date_time=datetime.now(tz).isoformat()
-    print 'Date time: ' + date_time    
+    print ('Date time: ' + date_time)
+    print 'test is this triggered'   
 
 
 print 'test_1_!_1'
