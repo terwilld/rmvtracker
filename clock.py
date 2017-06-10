@@ -109,51 +109,42 @@ except:
 
 
 
-@sched.scheduled_job('cron', day_of_week='sat', hour='6-22', minute='*/3')
+@sched.scheduled_job('cron', day_of_week='sat', hour='6-12', minute='*/60')
 def scheduled_job_1():
-    print('This job is run every saturday every 3 minutes with the hour addition.')
+    #       This script runs a few times just on saturdays.
+    #       It is only needed to run once, however it is tried a few times to make sure that it does infact run
+    #       
+    #       Data is collected during the week and stored in "current data"
+    #       During weekend, current data is moved to table Last_week data, current data is emptied and the process repeats.
+
+
+    print('This job is run every saturday a few times to check and rotate tables.')
     conn = psycopg2.connect(database=DB_name,user=DB_user,password=DB_password,host=DB_host,port=DB_port,sslmode='require')
     cur = conn.cursor()
+
+    #   Counts how many rows are in current data which comes formatted as a [(rowcount)]
     cur.execute('select count(*) from Current_Data;')
     rows = cur.fetchall()
     row_count=rows[0][0]
-    print row_count
     if row_count > 100:
-        print 'the row count is greater than 100'
-        print 'the tables need to be rotated'
-        #Cur.execute("truncate Last_Week_Data;")
-        cur.execute("TRUNCATE Last_Week_Data;")
-        print 'truncated table :last weeks data'
-        cur.execute('INSERT INTO Last_Week_Data SELECT * FROM Current_Data;')
-        print 'copied data from current to last week'
-        print 'verify the copy worked:'
 
-        cur.execute('select count(*) from Current_Data;')
-        rows = cur.fetchall()
-        row_count=rows[0][0]
-        print 'row_count from current data: ',row_count
-
-        cur.execute('select count(*) from Last_Week_Data;')
-        rows = cur.fetchall()
-        row_count=rows[0][0]
-        print 'row_count from Last_Week_Data: ',row_count
-
-        print 'truncate current data'
+            #   Empties the table from last week, but preserves
+        cur.execute("TRUNCATE Last_Week_Data;")     
+ 
+            #   Copies the data from current week table into last week table
+        cur.execute('INSERT INTO Last_Week_Data SELECT * FROM Current_Data;')   
+ 
+            #   Empties table from current data
         cur.execute("TRUNCATE Current_Data;")
 
-        print 'verify truncate current data'
+        # verify truncate current data
         cur.execute('select count(*) from Current_Data;')
         rows = cur.fetchall()
         row_count=rows[0][0]
         print 'row_count from current data: ',row_count
 
-
-
-        #   Cur.execute("truncate Current_Data;")
-        # to be done later
-
     else:
-        print 'did not need to rotate data'
+        print 'did not need to rotate data data has previously been moved'
 
     print 'Row Count ',row_count
     conn.commit()
