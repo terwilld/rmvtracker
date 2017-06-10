@@ -120,12 +120,16 @@ def scheduled_job_1():
 
     print 'made conneciton'
     rows = cur.fetchall()
-    print rows,rows[0]
+    print rows,rows[0],rows[0][0]
+    row_count=rows[0][0]
+    print row_count
 
     conn.commit()
     conn.close()
     print 'got to the end'
-
+    if row_count > 100:
+        print 'the row count is greater than 100'
+    print 'Row Count ',row_count
 
 
 print 'test_1_!_1'
