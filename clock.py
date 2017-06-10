@@ -112,6 +112,8 @@ except:
 @sched.scheduled_job('cron', day_of_week='sat', hour='6-22', minute='*/3')
 def scheduled_job_1():
     print('This job is run every saturday every 3 minutes with the hour addition.')
+
+    print 'test is this triggered'   
     tz = timezone('America/New_York')
     date_time=datetime.now(tz).isoformat()
     print ('Date time: ' + date_time)
