@@ -165,14 +165,25 @@ def scheduled_job():
     #       additionally, it is not always constant, so the cron is given a large window and the actual window is gaurded against EST here
     #       
 
+    print 'test 1'
     conn = psycopg2.connect(database=DB_name,user=DB_user,password=DB_password,host=DB_host,port=DB_port,sslmode='require')
     cur = conn.cursor()
 
     #   Counts how many rows are in current data which comes formatted as a [(rowcount)]
+    print 'test 2'
     cur.execute('select count(*) from Current_Data;')
     rows = cur.fetchall()
     row_count=rows[0][0]
     print 'Row count of Current_data: ', row_count
+
+    print 'test 3'
+
+    cur.execute('select count(*) from Last_Week_Data;')
+    rows = cur.fetchall()
+    row_count=rows[0][0]
+    print 'Row count of Last_Week_Data: ', row_count
+
+    print 'test 4'
     conn.commit()
     conn.close()
 
