@@ -165,6 +165,21 @@ def scheduled_job():
     #       additionally, it is not always constant, so the cron is given a large window and the actual window is gaurded against EST here
     #       
 
+    conn = psycopg2.connect(database=DB_name,user=DB_user,password=DB_password,host=DB_host,port=DB_port,sslmode='require')
+    cur = conn.cursor()
+
+    #   Counts how many rows are in current data which comes formatted as a [(rowcount)]
+    cur.execute('select count(*) from Current_Data;')
+    rows = cur.fetchall()
+    row_count=rows[0][0]
+    print 'Row count of Current_data: ', row_count
+    conn.commit()
+    conn.close()
+
+
+
+
+
 
     timestamp,start,end = datetime.datetime.now(pytz.timezone("America/New_York")).time(),datetime.time(7), datetime.time(19)
     if start <= timestamp <= end:
@@ -208,6 +223,7 @@ def scheduled_job():
                 Wilmington_Licensing, Wilmington_Registration, \
                 Worcester_Licensing, Worcester_Registration) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s,%s, %s, %s, %s, %s, %s, %s, %s, %s, %s,%s, %s, %s, %s, %s, %s, %s, %s, %s,%s, %s, %s, %s, %s, %s, %s, %s, %s, %s,%s, %s, %s, %s, %s, %s, %s, %s, %s, %s,%s, %s, %s, %s, %s, %s, %s, %s)", Result_List)
             print'may have actually put into the database'
+
             conn.commit()
             conn.close()
         except:
