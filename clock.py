@@ -156,7 +156,6 @@ def scheduled_job_1():
     conn.close()
 
 
-print 'test_1_!_1'
 @sched.scheduled_job('cron', day_of_week='mon-fri', minute='*/10')
 def scheduled_job():
     print('This job is run every weekday every 10 minutes without the hour addition.')
