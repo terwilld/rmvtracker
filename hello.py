@@ -8,7 +8,7 @@ import urlparse
 from subprocess import Popen, PIPE
 import time
 from scrape_locations import *
-
+import pandas.io.sql as psql
 
 
 try:
@@ -83,9 +83,10 @@ def how_this_was_made():
 
 @app.route("/test")
 def test():
-    return DB_name+' '+DB_user+' '+DB_password+' '+str(DB_host)+' '+str(DB_port)
-
-
+    #return DB_name+' '+DB_user+' '+DB_password+' '+str(DB_host)+' '+str(DB_port)
+    conn = psycopg2.connect(database=DB_name,user=DB_user,password=DB_password,host=DB_host,port=DB_port,sslmode='require')
+    cur = conn.cursor()
+    
 
 
 
