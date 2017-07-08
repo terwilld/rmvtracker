@@ -9,7 +9,7 @@ from subprocess import Popen, PIPE
 import time
 from scrape_locations import *
 import pandas.io.sql as psql
-
+import pandas as pd
 
 try:
     print 'Config imported:  Local build'
@@ -86,7 +86,20 @@ def test():
     #return DB_name+' '+DB_user+' '+DB_password+' '+str(DB_host)+' '+str(DB_port)
     conn = psycopg2.connect(database=DB_name,user=DB_user,password=DB_password,host=DB_host,port=DB_port,sslmode='require')
     cur = conn.cursor()
-    
+    df = pd.read_sql_query("select * from Last_Week_Data;", conn)
+    print df
+    #return 'did it work'   # yes it did
+    global Header_Values
+    Header_Values=list(df.columns.values)
+    print Header_Values
+
+
+
+
+    print 'it has gotten to here'
+    return 'it has gotten to here '
+
+
 
 
 
