@@ -3,7 +3,7 @@ import sys
 from flask import Flask, render_template, request, url_for, flash
 from forms import ContactForm
 from flask.ext.mail import Message, Mail
-import psycopg2
+import psycopg2,requests
 import urlparse
 from subprocess import Popen, PIPE
 import time
